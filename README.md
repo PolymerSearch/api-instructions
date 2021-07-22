@@ -55,7 +55,9 @@ Sample Response
 
 [Javascript snippet](javascript.js) |
 [Curl snippet](curl_sample.sh) |
-[Short video](Dataset%20API.mp4)
+[Short video](assets/dataset-api.mp4)
+
+![Polymer App](https://github.com/PolymerSearch/api-instructions/blob/master/assets/dataset-api.mp4?raw=true)
 
 
 ## Postman collection
