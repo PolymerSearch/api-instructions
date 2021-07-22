@@ -57,9 +57,6 @@ Sample Response
 [Curl snippet](curl_sample.sh) |
 [Short video](assets/dataset-api.mp4)
 
-![Polymer App](https://github.com/PolymerSearch/api-instructions/blob/master/assets/dataset-api.mp4?raw=true)
-
-
 ## Postman collection
 
 You can download the Postman collection directly from [here](PolymerSearch-postman.json).
