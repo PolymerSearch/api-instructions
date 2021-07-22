@@ -5,16 +5,16 @@ You can use our API to access PolymerSearch API endpoints, that provide various 
 Detailed API Documentation is available [HERE](https://apidocs.polymersearch.com/).
 
 Before
-![Raw CSV](https://github.com/PolymerSearch/polymer-search-api/blob/master/assets/raw_csv.png?raw=true)
+![Raw CSV](https://github.com/PolymerSearch/api-instructions/blob/master/assets/raw_csv.png?raw=true)
 
 After
-![Polymer App](https://github.com/PolymerSearch/polymer-search-api/blob/master/assets/polymer_app.png?raw=true)
+![Polymer App](https://github.com/PolymerSearch/api-instructions/blob/master/assets/polymer_app.png?raw=true)
 
 ## Authentication
 
 PolymerSearch API uses API keys to allow access to our endpoints. You can register a new API key as a user, inside workspace settings, on the API Keys section.
 
-![Creating an API key](https://github.com/PolymerSearch/polymer-search-api/blob/master/assets/api_key_management.png?raw=true)
+![Creating an API key](https://github.com/PolymerSearch/api-instructions/blob/master/assets/api_key_management.png?raw=true)
 
 As of now you can create as many API Keys as you want and give them a name. Once you don't want to use it you can disable it from the dashboard. PolymerSearch API expects the API key to be included in all API requests to the server. There are two ways to include it in requests:
 
