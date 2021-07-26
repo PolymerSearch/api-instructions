@@ -1,4 +1,3 @@
-
 # Welcome to PolymerSearch public API instructions
 
 You can use our API to access PolymerSearch API endpoints, that provide various functionality present at our website.
@@ -55,8 +54,9 @@ Sample Response
 | Error | [error.json](response/error.json)|
 
 [Javascript snippet](javascript.js) |
-[Curl snippet](dataset_curl_sample.sh) |
-[Short video](assets/dataset-api.mp4)
+[Curl snippet](dataset_curl_sample.sh)
+
+![API Invocation via curl](https://user-images.githubusercontent.com/5403700/126966334-0d409a7d-970b-4fe0-bbdb-18f8f2f77d69.mp4)
 
 ## # Task API
 ### Fetch Status
