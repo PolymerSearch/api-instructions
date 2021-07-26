@@ -55,7 +55,7 @@ Sample Response
 | Error | [error.json](response/error.json)|
 
 [Javascript snippet](javascript.js) |
-[Curl snippet](curl_sample.sh) |
+[Curl snippet](dataset_curl_sample.sh) |
 [Short video](assets/dataset-api.mp4)
 
 ## # Task API
@@ -67,6 +67,7 @@ Sample Response
 | Success | [task-success.json](response/task-success.json)|
 | Error | [task-error.json](response/task-error.json)|
 
+[Curl snippet](task_curl_sample.sh)
 
 Response Description
 | Type | Datatype | Desc
