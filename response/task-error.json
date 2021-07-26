@@ -1,0 +1,18 @@
+{
+    "data": {
+        "id": "60f148af57aff30c648eb6f7",
+        "user_id": "60990e185b2895737aa8841c",
+        "status": "Done",
+        "type": "dataset_upload",
+        "created_at": "2021-07-16T08:51:59.152Z",
+        "updated_at": "2021-07-16T08:51:59.431Z",
+        "data": {
+            "success": false,
+            "errors": [
+                {
+                    "message": "file type not supported, valid types: csv"
+                }
+            ]
+        }
+    }
+}

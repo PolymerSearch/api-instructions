@@ -1,3 +1,4 @@
+
 # Welcome to PolymerSearch public API instructions
 
 You can use our API to access PolymerSearch API endpoints, that provide various functionality present at our website.
@@ -50,12 +51,31 @@ curl --location --request POST 'http://api.polymersearch.com/dataset' \
 Sample Response
 | Type | Link | Desc
 | ------ | ------ | ------ | 
-| Success | [success.json](response/success.json)| `launch_url` is your polymer site URL
+| Success | [success.json](response/success.json)| `task_id` to fetch task status
 | Error | [error.json](response/error.json)|
 
 [Javascript snippet](javascript.js) |
 [Curl snippet](curl_sample.sh) |
 [Short video](assets/dataset-api.mp4)
+
+## # Task API
+### Fetch Status
+GET http://api.polymersearch.com/tasks/:taskid
+Sample Response
+| Type | Link | Desc
+| ------ | ------ | ------ | 
+| Success | [task-success.json](response/task-success.json)|
+| Error | [task-error.json](response/task-error.json)|
+
+
+Response Description
+| Type | Datatype | Desc
+| ------ | ------ | ------ | 
+| data.status | String|If set to 'Done' then task is executed and you can find response in data.data key
+| data.data.success | Boolean| If true then dataset was processed successfully and launch URL (data.data.launch_url) is ready
+| data.data.launch_url | Boolean| launch URL (data.data.launch_url), only if data.data.success is true
+| data.data.embed_code | Boolean| Embed Code (data.data.embed_code), only if data.data.success is true
+| data.errors | List| List of errors, only if data.data.success is false
 
 ## Postman collection
 
