@@ -1,3 +1,4 @@
+
 # Welcome to PolymerSearch public API instructions
 
 You can use our API to access PolymerSearch API endpoints, that provide various functionality present at our website.
@@ -31,21 +32,40 @@ The Dataset API allows creating new PolymerSearch sites from your CSV.
 
 This endpoint starts processing of provided CSV.
 
-POST http://api.polymersearch.com/dataset
+POST https://api.polymersearch.com/v1/dataset
 |Field                |Mendatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
 |url|true           |URL to a valid public downloadable CSV.            |
 |name          |true           |Name of the dataset/file.            |
-|sharing          |false|Desired sharing status for the dataset (public, private, password-protected)
+|sharing          |false|Desired sharing status for the dataset (public, private, password-protected).
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
+|import_from          |false|Copy views & user config from an existing dataset. import_from.id would be source dataset ID from which you want to copy views or user config. import_from.data is an array with possible values views, user_config (one of them or both)  |
 
-Example: 
+Example 1: 
 ```sh
-curl --location --request POST 'http://api.polymersearch.com/dataset' \
---header 'x-api-key: XXXc8ef-Xdd9-4XX6-X72d-X119377fXXX' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'url=https://abcc.s3.amazonaws.com/myfile.csv' \
---data-urlencode 'name=Payments 11 July 1a'
+curl --location --request POST 'https://dinesh.polymerdev.com/api/v1/dataset' \
+--header 'x-api-key: XXd5c7f6-XXf9-4320-XX4d-5673d8XXd5bb' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+"url": "https://abcc.s3.amazonaws.com/myfile.csv",
+"name": "Payment yearlys.csv"
+}'
+```
+Example 2: 
+```sh
+curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
+--header 'x-api-key: XXd5c7f6-feXX-43XX-XX4d-5673d8f0d5XX' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "url": "https://abcc.s3.amazonaws.com/myfile.csv",
+    "name": "Payment yearlys3.csv",
+    "import_from": {
+        "id": "6107ab93fa0ec85cb863f0e1",
+        "data": [
+            "views"
+        ]
+    }
+}'
 ```
 Sample Response
 | Type | Link | Desc
@@ -60,7 +80,7 @@ Sample Response
 
 ## # Task API
 ### Fetch Status
-GET http://api.polymersearch.com/tasks/:taskid
+GET https://api.polymersearch.com/v1/tasks/:taskid
 Sample Response
 | Type | Link | Desc
 | ------ | ------ | ------ | 
@@ -91,5 +111,3 @@ Response headers contain rate-limiting details:
 -   X-RateLimit-Limit: Number of requests you can make in an hour
 -   X-RateLimit-Remaining: Number of requests left for the time window
 -   X-RateLimit-Reset: The remaining window before the rate limit resets in UTC epoch seconds
-
-Currently there is no rate limiting per user, but it may be introduced in future updates.
