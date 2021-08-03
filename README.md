@@ -90,7 +90,7 @@ Sample Response
 [Curl snippet](task_curl_sample.sh)
 
 Response Description
-| Type | Datatype | Desc
+| Field | Datatype | Desc
 | ------ | ------ | ------ | 
 | data.status | String|If set to 'Done' then task is executed and you can find response in data.data key
 | data.data.success | Boolean| If true then dataset was processed successfully and launch URL (data.data.launch_url) is ready
