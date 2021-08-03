@@ -42,7 +42,7 @@ POST https://api.polymersearch.com/v1/dataset
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
 |import_from          |false|Object for copy views & user config from an existing dataset (see below).|
 |import_from.id           |true|source dataset ID from which you want to copy views or user config.|
-|import_from.data           |true|views, user_config (one of them or both).|
+|import_from.data           |true|Array containing views, user_config (one of them or both).|
 
 Example 1: 
 ```sh
