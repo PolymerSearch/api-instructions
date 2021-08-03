@@ -48,7 +48,7 @@ curl --location --request POST 'https://dinesh.polymerdev.com/api/v1/dataset' \
 --header 'Content-Type: application/json' \
 --data-raw '{
 "url": "https://abcc.s3.amazonaws.com/myfile.csv",
-"name": "Payment yearlys.csv"
+"name": "Payment yearly.csv"
 }'
 ```
 Example 2: 
@@ -58,7 +58,7 @@ curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "url": "https://abcc.s3.amazonaws.com/myfile.csv",
-    "name": "Payment yearlys3.csv",
+    "name": "Payment yearly2.csv",
     "import_from": {
         "id": "6107ab93fa0ec85cb863f0e1",
         "data": [
@@ -67,6 +67,24 @@ curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
     }
 }'
 ```
+
+Example 3: 
+```sh
+curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
+--header 'x-api-key: XXd5c7f6-feXX-43XX-XX4d-5673d8f0d5XX' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "url": "https://abcc.s3.amazonaws.com/myfile.csv",
+    "name": "Payment yearly3.csv",
+    "import_from": {
+        "id": "6107ab93fa0ec85cb863f0e1",
+        "data": [
+            "views","user_config"
+        ]
+    }
+}'
+```
+
 Sample Response
 | Type | Link | Desc
 | ------ | ------ | ------ | 
