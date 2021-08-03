@@ -110,11 +110,11 @@ Sample Response
 Response Description
 | Field | Datatype | Desc
 | ------ | ------ | ------ | 
-| data.status | String|If set to 'Done' then task is executed and you can find response in data.data key
-| data.data.success | Boolean| If true then dataset was processed successfully and launch URL (data.data.launch_url) is ready
-| data.data.launch_url | String| launch URL (data.data.launch_url), only if data.data.success is true
-| data.data.embed_code | String| Embed Code (data.data.embed_code), only if data.data.success is true
-| data.errors | List| List of errors, only if data.data.success is false
+| status | String|If set to 'Done' then task is executed and you can find response in data key
+| data.success | Boolean| If true then dataset was processed successfully and launch URL (data.launch_url) is ready
+| data.launch_url | String| launch URL (data.launch_url), only if data.success is true
+| data.embed_code | String| Embed Code (data.embed_code), only if data.success is true
+| errors | List| List of errors, only if data.success is false
 
 ## Postman collection
 

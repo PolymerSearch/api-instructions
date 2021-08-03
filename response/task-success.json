@@ -1,18 +1,15 @@
 {
+    "id": "60f139c67168e50baf7c0d00",
+    "user_id": "60990e185b2895737aa8841c",
+    "status": "Done",
+    "type": "dataset_upload",
+    "created_at": "2021-07-16T07:48:22.435Z",
+    "updated_at": "2021-07-16T07:51:32.692Z",
     "data":
     {
-        "id": "60f139c67168e50baf7c0d00",
-        "user_id": "60990e185b2895737aa8841c",
-        "status": "Done",
-        "type": "dataset_upload",
-        "created_at": "2021-07-16T07:48:22.435Z",
-        "updated_at": "2021-07-16T07:51:32.692Z",
-        "data":
-        {
-            "message": "file processing done",
-            "launch_url": "https://app.polymersearch.com/polymer/data/60f7bdd7c07d8900b5ac60f8",
-            "embed_code": "<iframe height=\"1200\" scrolling=\"no\" src=\"https://app.polymersearch.com/polymer/data/60f7bdd7c07d8900b5ac60f8\" style=\"overflow:hidden;height:100%;width:100%;position:absolute;top:0;left:0;right:0;bottom:0\" width=\"100%\"></iframe>",
-            "success": true
-        }
+        "message": "file processing done",
+        "launch_url": "https://app.polymersearch.com/polymer/data/60f7bdd7c07d8900b5ac60f8",
+        "embed_code": "<iframe height=\"1200\" scrolling=\"no\" src=\"https://app.polymersearch.com/polymer/data/60f7bdd7c07d8900b5ac60f8\" style=\"overflow:hidden;height:100%;width:100%;position:absolute;top:0;left:0;right:0;bottom:0\" width=\"100%\"></iframe>",
+        "success": true
     }
 }
