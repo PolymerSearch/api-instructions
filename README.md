@@ -34,7 +34,7 @@ The Dataset API allows creating new PolymerSearch sites from your CSV.
 This endpoint starts processing of provided CSV.
 
 POST https://api.polymersearch.com/v1/dataset
-|Field                |Mendatory                          |Description                         |
+|Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
 |url|true           |URL to a valid public downloadable CSV.            |
 |name          |true           |Name of the dataset/file.            |
