@@ -6,7 +6,7 @@ var data = qs.stringify({
 });
 var config = {
   method: 'post',
-  url: 'https://dev.polymerdev.com/api/v1/dataset',
+  url: 'https://app.polymersearch.com/api/v1/dataset',
   headers: { 
     'x-api-key': 'ca224bb4-9144-4e22-8d1b-a4cd57d9eb37', 
     'Content-Type': 'application/x-www-form-urlencoded'
