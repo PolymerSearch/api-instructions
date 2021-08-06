@@ -1,3 +1,3 @@
-curl --location --request GET 'https://app.polymersearch.com/api/v1/tasks/610b9f5626313405cfb5de65' \
+curl --location --request GET 'https://api.polymersearch.com/v1/tasks/610cfd7e02e60b3c1da96004' \
 --header 'accept: application/json, text/plain, */*' \
---header 'x-api-key: b58aab30-17f1-4bc7-83df-4c8301fea504'
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX'

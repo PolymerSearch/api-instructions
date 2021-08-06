@@ -12,7 +12,7 @@
 				"header": [
 					{
 						"key": "x-api-key",
-						"value": "ca224bb4-9144-4e22-8d1b-a4cd57d9eb37",
+						"value": "XXeca66c-21f3-XX39-b407-64e00c62XXXX",
 						"type": "text"
 					}
 				],
@@ -32,7 +32,7 @@
 					]
 				},
 				"url": {
-					"raw": "https://app.polymersearch.com/api/v1/dataset",
+					"raw": "https://api.polymersearch.com/v1/dataset",
 					"protocol": "https",
 					"host": [
 						"dev",

@@ -1,5 +1,5 @@
-curl --location --request POST 'https://app.polymersearch.com/api/v1/dataset' \
---header 'x-api-key: b58aab30-17f1-4bc7-83df-4c8301fea504' \
+curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "url": "https://abcc.s3.amazonaws.com/FB+Ads.csv",

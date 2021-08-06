@@ -34,7 +34,7 @@ The Dataset API allows creating new PolymerSearch sites from your CSV.
 
 This endpoint starts processing of provided CSV.
 
-POST https://app.polymersearch.com/api/v1/dataset
+POST https://api.polymersearch.com/v1/dataset
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
 |url|true           |URL to a valid public downloadable CSV.            |
@@ -47,8 +47,8 @@ POST https://app.polymersearch.com/api/v1/dataset
 
 Example 1 ([see curl](dataset_curl_sample_ex1.sh)): 
 ```sh
-curl --location --request POST 'https://app.polymersearch.com/api/v1/dataset' \
---header 'x-api-key: b58aab30-17f1-4bc7-83df-4c8301fea504' \
+curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
 --header 'Content-Type: application/json' \
 --data-raw '{
 "url": "https://abcc.s3.amazonaws.com/FB+Ads.csv",
@@ -57,8 +57,8 @@ curl --location --request POST 'https://app.polymersearch.com/api/v1/dataset' \
 ```
 Example 2 ([see curl](dataset_curl_sample_ex2.sh)): 
 ```sh
-curl --location --request POST 'https://app.polymersearch.com/api/v1/dataset' \
---header 'x-api-key: b58aab30-17f1-4bc7-83df-4c8301fea504' \
+curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "url": "https://abcc.s3.amazonaws.com/FB+Ads.csv",
@@ -74,8 +74,8 @@ curl --location --request POST 'https://app.polymersearch.com/api/v1/dataset' \
 
 Example 3: ([see curl](dataset_curl_sample_ex3.sh)): 
 ```sh
-curl --location --request POST 'https://app.polymersearch.com/api/v1/dataset' \
---header 'x-api-key: b58aab30-17f1-4bc7-83df-4c8301fea504' \
+curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "url": "https://abcc.s3.amazonaws.com/FB+Ads.csv",
