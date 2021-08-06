@@ -10,6 +10,11 @@ Before
 After
 ![Polymer App](https://github.com/PolymerSearch/api-instructions/blob/master/assets/polymer_app.png?raw=true)
 
+## What is PolymerSearch
+
+[Polymer Search](https://polymersearch.com) is the world's fastest path to a data-driven team, regardless of background. It lets you upload or sync a CSV/spreadsheet and creates an interactive web app that you can share easily with others.
+
+
 ## Authentication
 
 PolymerSearch API uses API keys to allow access to our endpoints. You can register a new API key as a user, inside workspace settings, on the API Keys section.
@@ -56,6 +61,22 @@ Sample Response
 [Javascript snippet](javascript.js) |
 [Curl snippet](curl_sample.sh) |
 [Short video](assets/dataset-api.mp4)
+
+
+## Copying views and config
+
+You can copy all views and config from a different dataset by adding `import_from` object in the request, and including `id` of the dataset and `data` that you want to copy (either `views`, `user_config` or both).
+
+```
+{
+    "import_from":{
+        "id": "6107ab93fa0ec85cb863f0e1",
+        "data": [
+            "views","user_config"
+        ]
+    }
+}
+```
 
 ## Postman collection
 
