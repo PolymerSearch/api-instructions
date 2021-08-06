@@ -1,3 +1,6 @@
+
+
+
 # Welcome to PolymerSearch public API instructions
 
 You can use our API to access PolymerSearch API endpoints, that provide various functionality present at our website.
@@ -36,31 +39,91 @@ The Dataset API allows creating new PolymerSearch sites from your CSV.
 
 This endpoint starts processing of provided CSV.
 
-POST http://api.polymersearch.com/dataset
-|Field                |Mendatory                          |Description                         |
+POST https://api.polymersearch.com/v1/dataset
+|Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
 |url|true           |URL to a valid public downloadable CSV.            |
 |name          |true           |Name of the dataset/file.            |
-|sharing          |false|Desired sharing status for the dataset (public, private, password-protected)
+|sharing          |false|Desired sharing status for the dataset (public, private, password-protected).
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
+|import_from          |false|Object for copy views & user config from an existing dataset (see below).|
+|import_from.id           |true|source dataset ID from which you want to copy views or user config.|
+|import_from.data           |true|Array containing views, user_config (one of them or both).|
 
-Example: 
+Example 1 ([see curl](dataset_curl_sample_ex1.sh)): 
 ```sh
-curl --location --request POST 'http://api.polymersearch.com/dataset' \
---header 'x-api-key: XXXc8ef-Xdd9-4XX6-X72d-X119377fXXX' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'url=https://abcc.s3.amazonaws.com/myfile.csv' \
---data-urlencode 'name=Payments 11 July 1a'
+curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+"url": "https://abcc.s3.amazonaws.com/FB+Ads.csv",
+"name": "FB Ad List Q2.csv"
+}'
 ```
+Example 2 ([see curl](dataset_curl_sample_ex2.sh)): 
+```sh
+curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "url": "https://abcc.s3.amazonaws.com/FB+Ads.csv",
+    "name": "FB Ad List Q3.csv",
+    "import_from": {
+        "id": "610b9b87263134f034b5dd73",
+        "data": [
+            "views"
+        ]
+    }
+}'
+```
+
+Example 3: ([see curl](dataset_curl_sample_ex3.sh)): 
+```sh
+curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "url": "https://abcc.s3.amazonaws.com/FB+Ads.csv",
+    "name": "FB Ad List Q5.csv",
+    "import_from": {
+        "id": "610b9b87263134f034b5dd73",
+        "data": [
+            "views", "user_config"
+        ]
+    }
+}'
+```
+
 Sample Response
 | Type | Link | Desc
 | ------ | ------ | ------ | 
-| Success | [success.json](response/success.json)| `launch_url` is your polymer site URL
+| Success | [success.json](response/success.json)| `task_id` to fetch task status
 | Error | [error.json](response/error.json)|
 
 [Javascript snippet](javascript.js) |
-[Curl snippet](curl_sample.sh) |
-[Short video](assets/dataset-api.mp4)
+
+![API Invocation via curl](https://user-images.githubusercontent.com/5403700/126966334-0d409a7d-970b-4fe0-bbdb-18f8f2f77d69.mp4)
+
+## # Task API
+### Fetch Status
+GET https://api.polymersearch.com/v1/tasks/:taskid
+Sample Response
+| Type | Link | Desc
+| ------ | ------ | ------ | 
+| Success | [task-success.json](response/task-success.json)|
+| In Progress | [task-in-progress.json](response/task-in-progress.json)|
+| Error | [task-error.json](response/task-error.json)|
+
+[Curl snippet](task_curl_sample.sh)
+
+Response Description
+| Field | Datatype | Desc
+| ------ | ------ | ------ | 
+| status | String|If set to 'Done' then task is executed and you can find response in data key
+| data.success | Boolean| If true then dataset was processed successfully and launch URL (data.launch_url) is ready
+| data.launch_url | String| launch URL (data.launch_url), only if data.success is true
+| data.embed_code | String| Embed Code (data.embed_code), only if data.success is true
+| errors | List| List of errors, only if data.success is false
 
 
 ## Copying views and config
@@ -91,5 +154,3 @@ Response headers contain rate-limiting details:
 -   X-RateLimit-Limit: Number of requests you can make in an hour
 -   X-RateLimit-Remaining: Number of requests left for the time window
 -   X-RateLimit-Reset: The remaining window before the rate limit resets in UTC epoch seconds
-
-Currently there is no rate limiting per user, but it may be introduced in future updates.
