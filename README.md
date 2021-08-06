@@ -118,7 +118,7 @@ Response Description
 | data.success | Boolean| If true then dataset was processed successfully and launch URL (data.launch_url) is ready
 | data.launch_url | String| launch URL (data.launch_url), only if data.success is true
 | data.embed_code | String| Embed Code (data.embed_code), only if data.success is true
-| errors | List| List of errors, only if data.success is false
+| data.errors | List| List of errors, only if data.success is false
 
 ## Postman collection
 
