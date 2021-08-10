@@ -154,3 +154,29 @@ Response headers contain rate-limiting details:
 -   X-RateLimit-Limit: Number of requests you can make in an hour
 -   X-RateLimit-Remaining: Number of requests left for the time window
 -   X-RateLimit-Reset: The remaining window before the rate limit resets in UTC epoch seconds
+
+# Frequently Asked Questions
+- [How to make generated site public?](#how-to-make-generated-site-public)
+- [What all formats are supported by Dataset API?](#what-all-formats-are-supported-by-dataset-api)
+- [Dataset uploaded via Dataset API can be seen on Polymersearch App?](#dataset-uploaded-via-dataset-api-can-be-seen-on-polymersearch-app)
+- [What all input sources Dataset API supports? it supports direct database connectivity?](#what-all-input-sources-dataset-api-supports-it-supports-direct-database-connectivity)
+- [Can it work without import_from?](#can-it-work-without-import_from)
+- [I recevied task_id from Dataset API, what to do next to get dataset URL?](#i-recevied-task_id-from-dataset-api-what-to-do-next-to-get-dataset-url)
+
+### How to make generated site public?
+Pass `sharing:public` to make a site publically accessible.
+
+### What all formats are supported by Dataset API?
+It supports 'CSV' format only. We're planning to add support for xlsx soon.
+
+### Dataset uploaded via Dataset API can be seen on Polymersearch App?
+Yes, All the datasets can uploaded via Datasets will be visible on Polymersearch App.
+
+### What all input sources Dataset API supports? it supports direct database connectivity?
+It supports publically downloadable CSV URL only. We’re planning to add support for other sources as well like direct DB connections.
+
+### Can it work without import_from?
+Yes, import_from is only required in case you want to copy views or user config from an existing dataset
+
+### I recevied task_id from Dataset API, what to do next to get dataset URL?
+You can call Task->Fetch Status API to fetch dataset launch URL
