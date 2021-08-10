@@ -3,7 +3,7 @@
 
 # Welcome to PolymerSearch public API instructions
 
-You can use our API to access PolymerSearch API endpoints, that provide various functionality present at our website.
+You can use our API to access PolymerSearch API endpoints, that provide various functionality present on our website.
 
 Detailed API Documentation is available [HERE](https://apidocs.polymersearch.com/).
 
@@ -29,7 +29,7 @@ As of now you can create as many API Keys as you want and give them a name. Once
 As a query parameter:  `?api_key=&your_api_key`
 As a header:  `X-API-KEY: &your_api_key`
 
-You must replace `&your_api_key` with your personal API key.
+You must replace `&your_api_key` with your API key.
 
 ## Dataset API
 
@@ -47,7 +47,7 @@ POST https://api.polymersearch.com/v1/dataset
 |sharing          |false|Desired sharing status for the dataset (public, private, password-protected). Defaults to private.
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
 |import_from          |false|Object for copy views & user config from an existing dataset (see below).|
-|import_from.id           |true|source dataset ID from which you want to copy views or user config.|
+|import_from.id           |true|source dataset ID from which you want to copy views or user-config.|
 |import_from.data           |true|Array containing views, user_config (one of them or both).|
 
 Example 1 ([see curl](dataset_curl_sample_ex1.sh)): 
@@ -128,7 +128,7 @@ Response Description
 
 ## Copying views and config
 
-You can copy all views and config from a different dataset by adding `import_from` object in the request, and including `id` of the dataset and `data` that you want to copy (either `views`, `user_config` or both).
+You can copy all views and config from a different dataset by adding `import_from` object in the request, and including `id` of the dataset and `data` that you want to copy (either `views`, `user_config`, or both).
 
 ```
 {
@@ -154,3 +154,26 @@ Response headers contain rate-limiting details:
 -   X-RateLimit-Limit: Number of requests you can make in an hour
 -   X-RateLimit-Remaining: Number of requests left for the time window
 -   X-RateLimit-Reset: The remaining window before the rate limit resets in UTC epoch seconds
+
+# Frequently Asked Questions
+- [How to make generated site public?](#how-to-make-generated-site-public)
+- [What all formats are supported by Dataset API?](#what-all-formats-are-supported-by-dataset-api)
+- [Dataset uploaded via Dataset API can be seen on Polymersearch App?](#dataset-uploaded-via-dataset-api-can-be-seen-on-polymersearch-app)
+- [What all input sources Dataset API supports? it supports direct database connectivity?](#what-all-input-sources-dataset-api-supports-it-supports-direct-database-connectivity)
+- [Can it work without import_from?](#can-it-work-without-import_from)
+- [I recevied task_id from Dataset API, what to do next to get dataset URL?](#i-recevied-task_id-from-dataset-api-what-to-do-next-to-get-dataset-url)
+
+### How to make generated site public?
+Set `sharing:public` when invoking the Dataset API to make a site publically accessible.
+
+### What formats are supported by Dataset API?
+As of now, PolymerSearch API supports 'CSV' format only. We're planning to add support for xlsx soon.
+
+### Can the Datasets uploaded via Dataset API be seen in PolymerSearch Dashboard?
+Yes, all the datasets uploaded API will be visible in PolymerSearch Dashboard.
+
+### What input sources Dataset API supports?
+Currently, it supports publically downloadable CSV URLs only. We’re planning to add support for other sources soon (starting with form-data upload).
+
+### I received task_id from Dataset API, what are the next steps to get dataset URL?
+You need to invoke Task -> Fetch Status API to fetch dataset launch URL.
