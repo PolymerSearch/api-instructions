@@ -164,19 +164,16 @@ Response headers contain rate-limiting details:
 - [I recevied task_id from Dataset API, what to do next to get dataset URL?](#i-recevied-task_id-from-dataset-api-what-to-do-next-to-get-dataset-url)
 
 ### How to make generated site public?
-Pass `sharing:public` to make a site publically accessible.
+Set `sharing:public` when invoking the Dataset API to make a site publically accessible.
 
-### What all formats are supported by Dataset API?
-It supports 'CSV' format only. We're planning to add support for xlsx soon.
+### What formats are supported by Dataset API?
+As of now PolymerSearch API supports 'CSV' format only. We're planning to add support for xlsx soon.
 
-### Dataset uploaded via Dataset API can be seen on Polymersearch App?
-Yes, All the datasets can uploaded via Datasets will be visible on Polymersearch App.
+### Can the Datasets uploaded via Dataset API be seen in PolymerSearch Dashboard?
+Yes, all the datasets uploaded API will be visible in PolymerSearch Dashboard.
 
-### What all input sources Dataset API supports? it supports direct database connectivity?
-It supports publically downloadable CSV URL only. We’re planning to add support for other sources as well like direct DB connections.
+### What input sources Dataset API supports?
+Currently it supports publically downloadable CSV URL only. We’re planning to add support for other sources soon (starting with form-data upload).
 
-### Can it work without import_from?
-Yes, import_from is only required in case you want to copy views or user config from an existing dataset
-
-### I recevied task_id from Dataset API, what to do next to get dataset URL?
-You can call Task->Fetch Status API to fetch dataset launch URL
+### I recevied task_id from Dataset API, what are the next steps to get dataset URL?
+You need to invoke Task -> Fetch Status API to fetch dataset launch URL.
