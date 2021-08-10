@@ -1,6 +1,7 @@
 
 
 
+
 # Welcome to PolymerSearch public API instructions
 
 You can use our API to access PolymerSearch API endpoints, that provide various functionality present on our website.
@@ -157,11 +158,10 @@ Response headers contain rate-limiting details:
 
 # Frequently Asked Questions
 - [How to make generated site public?](#how-to-make-generated-site-public)
-- [What all formats are supported by Dataset API?](#what-all-formats-are-supported-by-dataset-api)
-- [Dataset uploaded via Dataset API can be seen on Polymersearch App?](#dataset-uploaded-via-dataset-api-can-be-seen-on-polymersearch-app)
-- [What all input sources Dataset API supports? it supports direct database connectivity?](#what-all-input-sources-dataset-api-supports-it-supports-direct-database-connectivity)
-- [Can it work without import_from?](#can-it-work-without-import_from)
-- [I recevied task_id from Dataset API, what to do next to get dataset URL?](#i-recevied-task_id-from-dataset-api-what-to-do-next-to-get-dataset-url)
+- [What formats are supported by Dataset API?](#what-formats-are-supported-by-dataset-api)
+- [Can the Datasets uploaded via Dataset API be seen in PolymerSearch Dashboard?](#can-the-datasets-uploaded-via-dataset-api-be-seen-in-polymersearch-dashboard)
+- [What input sources Dataset API supports?](#what-input-sources-dataset-api-supports)
+- [I received task_id from Dataset API, what are the next steps to get dataset URL?](#i-received-task_id-from-dataset-api-what-are-the-next-steps-to-get-dataset-url)
 
 ### How to make generated site public?
 Set `sharing:public` when invoking the Dataset API to make a site publically accessible.
