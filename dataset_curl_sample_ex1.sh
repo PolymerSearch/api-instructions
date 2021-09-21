@@ -4,5 +4,6 @@ curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
 --data-raw '{
 	"url": "https://abcc.s3.amazonaws.com/FB+Ads.csv",
 	"name": "FB Ad List Q2 C.csv",
-	"starting_row": 10
+	"starting_row": 10,
+	"update": true
 }'

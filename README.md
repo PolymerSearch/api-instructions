@@ -48,6 +48,7 @@ POST https://api.polymersearch.com/v1/dataset
 |sharing          |false|Desired sharing status for the dataset (public, private, password-protected). Defaults to private.
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
 |starting_row           |false|Desired row count where Polymer should start processing your file|
+|update           |false|Boolean. Force update dataset incase a dataset already exists with given name|
 |import_from          |false|Object for copy views & user config from an existing dataset (see below).|
 |import_from.id           |true|source dataset ID from which you want to copy views or user-config.|
 |import_from.data           |true|Array containing views, user_config (one of them or both).|
