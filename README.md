@@ -2,6 +2,7 @@
 
 
 
+
 # Welcome to PolymerSearch public API instructions
 
 You can use our API to access PolymerSearch API endpoints, that provide various functionality present on our website.
@@ -108,6 +109,40 @@ Sample Response
 [Javascript snippet](javascript.js) |
 
 ![API Invocation via curl](https://user-images.githubusercontent.com/5403700/126966334-0d409a7d-970b-4fe0-bbdb-18f8f2f77d69.mp4)
+
+### Updating a Dataset
+
+This endpoint starts processing of provided CSV.
+
+PUT https://api.polymersearch.com/v1/dataset/:id
+
+URL Params
+|Field                |Mandatory                          |Description                         |
+|----------------|-------------------------------|-----------------------------|
+|id|true           |Dataset ID|
+
+Body Params
+|Field                |Mandatory                          |Description                         |
+|----------------|-------------------------------|-----------------------------|
+|url|true           |URL to a valid public downloadable CSV.            |
+|name          |false           |Name of the dataset/file.|
+
+Example 1 ([see curl](dataset_update_curl_sample_ex1.sh)): 
+```sh
+curl --location --request PUT 'https://api.polymersearch.com/v1/dataset/6151754dfad3627deeb8f84b' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "FB Ad List Q2 C-uploaded.csv",
+    "url": "https://test-csv-datasets.s3.us-east-2.amazonaws.com/Test+-+Bank+Loans.csv"
+}'
+```
+Sample Response
+| Type | Link | Desc
+| ------ | ------ | ------ | 
+| Success | [success.json](response/success.json)| `task_id` to fetch task status
+| Error | [error.json](response/error.json)|
+
 
 ## # Task API
 ### Fetch Status
