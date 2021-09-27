@@ -112,14 +112,14 @@ Sample Response
 
 ### Updating a Dataset
 
-This endpoint starts processing of provided CSV.
+This endpoint update content, name of the existing dataset.
 
 PUT https://api.polymersearch.com/v1/dataset/:id
 
 URL Params
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
-|id|true           |Dataset ID|
+|id|true           |Dataset ID.|
 
 Body Params
 |Field                |Mandatory                          |Description                         |
