@@ -2,6 +2,7 @@
 
 
 
+
 # Welcome to PolymerSearch public API instructions
 
 You can use our API to access PolymerSearch API endpoints, that provide various functionality present on our website.
@@ -47,6 +48,8 @@ POST https://api.polymersearch.com/v1/dataset
 |name          |true           |Name of the dataset/file.            |
 |sharing          |false|Desired sharing status for the dataset (public, private, password-protected). Defaults to private.
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
+|starting_row           |false|Desired row count where Polymer should start processing your file.|
+|update           |false|Boolean. Force update dataset in case a dataset already exists with the given name.|
 |import_from          |false|Object for copy views & user config from an existing dataset (see below).|
 |import_from.id           |true|source dataset ID from which you want to copy views or user-config.|
 |import_from.data           |true|Array containing views, user_config (one of them or both).|
@@ -57,8 +60,10 @@ curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-"url": "https://abcc.s3.amazonaws.com/FB+Ads.csv",
-"name": "FB Ad List Q2.csv"
+    "url": "https://abcc.s3.amazonaws.com/FB+Ads.csv",
+    "name": "FB Ad List Q2.csv",
+    "starting_row": 10,
+    "update": true
 }'
 ```
 Example 2 ([see curl](dataset_curl_sample_ex2.sh)): 
@@ -104,6 +109,40 @@ Sample Response
 [Javascript snippet](javascript.js) |
 
 ![API Invocation via curl](https://user-images.githubusercontent.com/5403700/126966334-0d409a7d-970b-4fe0-bbdb-18f8f2f77d69.mp4)
+
+### Updating a Dataset
+
+This endpoint update content, name of the existing dataset.
+
+PUT https://api.polymersearch.com/v1/dataset/:id
+
+URL Params
+|Field                |Mandatory                          |Description                         |
+|----------------|-------------------------------|-----------------------------|
+|id|true           |Dataset ID.|
+
+Body Params
+|Field                |Mandatory                          |Description                         |
+|----------------|-------------------------------|-----------------------------|
+|url|true           |URL to a valid public downloadable CSV.            |
+|name          |false           |Name of the dataset/file.|
+
+Example 1 ([see curl](dataset_update_curl_sample_ex1.sh)): 
+```sh
+curl --location --request PUT 'https://api.polymersearch.com/v1/dataset/6151754dfad3627deeb8f84b' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "FB Ad List Q2 C-uploaded.csv",
+    "url": "https://test-csv-datasets.s3.us-east-2.amazonaws.com/Test+-+Bank+Loans.csv"
+}'
+```
+Sample Response
+| Type | Link | Desc
+| ------ | ------ | ------ | 
+| Success | [success.json](response/success.json)| `task_id` to fetch task status
+| Error | [error.json](response/error.json)|
+
 
 ## # Task API
 ### Fetch Status
