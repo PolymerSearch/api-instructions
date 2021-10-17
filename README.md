@@ -1,8 +1,3 @@
-
-
-
-
-
 # Welcome to PolymerSearch public API instructions
 
 You can use our API to access PolymerSearch API endpoints, that provide various functionality present on our website.
@@ -33,13 +28,9 @@ As a header:  `X-API-KEY: &your_api_key`
 
 You must replace `&your_api_key` with your API key.
 
-## Dataset API
+## Uploading a Dataset
 
 The Dataset API allows creating new PolymerSearch sites from your CSV.
-
-### Uploading a Dataset
-
-This endpoint starts processing of provided CSV.
 
 POST https://api.polymersearch.com/v1/dataset
 |Field                |Mandatory                          |Description                         |
@@ -54,19 +45,29 @@ POST https://api.polymersearch.com/v1/dataset
 |import_from.id           |true|source dataset ID from which you want to copy views or user-config.|
 |import_from.data           |true|Array containing views, user_config (one of them or both).|
 
-Example 1 ([see curl](dataset_curl_sample_ex1.sh)): 
+### Example 1 ([see curl](dataset_curl_sample_ex1.sh)): Create a dataset just with a name and dataset URL.
 ```sh
 curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "url": "https://abcc.s3.amazonaws.com/FB+Ads.csv",
-    "name": "FB Ad List Q2.csv",
-    "starting_row": 10,
+    "name": "FB Ad List Q2.csv"
+}'
+```
+### Example 2 ([see curl](dataset_curl_sample_ex2.sh)): Update content of an existing dataset.
+```sh
+curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "url": "https://abcc.s3.amazonaws.com/FB+Ads.csv",
+    "name": "FB Ad List Q2 C.csv",
     "update": true
 }'
 ```
-Example 2 ([see curl](dataset_curl_sample_ex2.sh)): 
+
+### Example 3 ([see curl](dataset_curl_sample_ex3.sh)): Create a dataset with a name, dataset URL and import all the views from an existing dataset.
 ```sh
 curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
@@ -83,7 +84,7 @@ curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
 }'
 ```
 
-Example 3: ([see curl](dataset_curl_sample_ex3.sh)): 
+### Example 4: ([see curl](dataset_curl_sample_ex4.sh)): Create a dataset with a name, dataset URL and import all the views, user config from an existing dataset.
 ```sh
 curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
@@ -110,8 +111,7 @@ Sample Response
 
 ![API Invocation via curl](https://user-images.githubusercontent.com/5403700/126966334-0d409a7d-970b-4fe0-bbdb-18f8f2f77d69.mp4)
 
-### Updating a Dataset
-
+## Updating a Dataset
 This endpoint update content, name of the existing dataset.
 
 PUT https://api.polymersearch.com/v1/dataset/:id
@@ -127,7 +127,7 @@ Body Params
 |url|true           |URL to a valid public downloadable CSV.            |
 |name          |false           |Name of the dataset/file.|
 
-Example 1 ([see curl](dataset_update_curl_sample_ex1.sh)): 
+### Example 1 ([see curl](dataset_update_curl_sample_ex1.sh)): 
 ```sh
 curl --location --request PUT 'https://api.polymersearch.com/v1/dataset/6151754dfad3627deeb8f84b' \
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
