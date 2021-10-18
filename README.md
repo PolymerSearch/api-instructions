@@ -1,3 +1,4 @@
+
 # Welcome to PolymerSearch public API instructions
 
 You can use our API to access PolymerSearch API endpoints, that provide various functionality present on our website.
@@ -42,7 +43,7 @@ POST https://api.polymersearch.com/v1/dataset
 |starting_row           |false|Desired row count where Polymer should start processing your file.|
 |update           |false|Boolean. Force update dataset in case a dataset already exists with the given name.|
 |import_from          |false|Object for copy views & user config from an existing dataset (see below).|
-|import_from.id           |true|source dataset ID from which you want to copy views or user-config.|
+|import_from.id           |true|source dataset ID from which you want to copy views or user-config. You can copy ID from Polymer app UI.|
 |import_from.data           |true|Array containing views, user_config (one of them or both).|
 
 ### Example 1 ([see curl](dataset_curl_sample_ex1.sh)): Create a dataset just with a name and dataset URL.
@@ -68,6 +69,7 @@ curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
 ```
 
 ### Example 3 ([see curl](dataset_curl_sample_ex3.sh)): Create a dataset with a name, dataset URL and import all the views from an existing dataset.
+Note: Copy import_from.id from Polymer UI.
 ```sh
 curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
@@ -144,7 +146,7 @@ Sample Response
 | Error | [error.json](response/error.json)|
 
 
-## # Task API
+## Task API
 ### Fetch Status
 GET https://api.polymersearch.com/v1/tasks/:taskid
 Sample Response
