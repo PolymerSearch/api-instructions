@@ -102,8 +102,14 @@ curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
     }
 }'
 ```
+### Response
+```sh
+{
+    "task_id": "60f7bdd7c07d897637ac60f5"
+}
+```
+You can use this task ID to poll status of dataset processing. [Check Task -> Fetch Status API](#task-api) for more details.
 
-Sample Response
 | Type | Link | Desc
 | ------ | ------ | ------ | 
 | Success | [success.json](response/success.json)| `task_id` to fetch task status
@@ -139,6 +145,13 @@ curl --location --request PUT 'https://api.polymersearch.com/v1/dataset/6151754d
     "url": "https://test-csv-datasets.s3.us-east-2.amazonaws.com/Test+-+Bank+Loans.csv"
 }'
 ```
+### Response
+```sh
+{
+    "task_id": "60f7bdd7c07d897637ac60f5"
+}
+```
+You can use this task ID to poll status of dataset processing. [Check Task -> Fetch Status API](#task-api) for more details.
 Sample Response
 | Type | Link | Desc
 | ------ | ------ | ------ | 
@@ -149,7 +162,24 @@ Sample Response
 ## Task API
 ### Fetch Status
 GET https://api.polymersearch.com/v1/tasks/:taskid
-Sample Response
+### Response
+```sh
+{
+    "id": "60f139c67168e50baf7c0d00",
+    "user_id": "60990e185b2895737aa8841c",
+    "status": "Done",
+    "type": "dataset_upload",
+    "created_at": "2021-07-16T07:48:22.435Z",
+    "updated_at": "2021-07-16T07:51:32.692Z",
+    "data":
+    {
+        "message": "file processing done",
+        "launch_url": "https://app.polymersearch.com/polymer/data/60f7bdd7c07d8900b5ac60f8",
+        "embed_code": "<iframe height=\"1200\" scrolling=\"no\" src=\"https://app.polymersearch.com/polymer/data/60f7bdd7c07d8900b5ac60f8\" style=\"overflow:hidden;height:100%;width:100%;position:absolute;top:0;left:0;right:0;bottom:0\" width=\"100%\"></iframe>",
+        "success": true
+    }
+}
+```
 | Type | Link | Desc
 | ------ | ------ | ------ | 
 | Success | [task-success.json](response/task-success.json)|
@@ -157,7 +187,6 @@ Sample Response
 | Error | [task-error.json](response/task-error.json)|
 
 [Curl snippet](task_curl_sample.sh)
-
 Response Description
 | Field | Datatype | Desc
 | ------ | ------ | ------ | 
