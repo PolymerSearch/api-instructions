@@ -12,7 +12,8 @@ Detailed API Documentation is available [HERE](https://apidocs.polymersearch.com
 ### Before: Any raw dataset
 <img src="https://github.com/PolymerSearch/api-instructions/blob/master/assets/raw_csv.png" width="800">
 
-### After: A fully interactive site. Example: https://flixgem.com, https://sheethacks.com 
+### After: A fully interactive site. 
+Check out some live examples: https://flixgem.com, https://sheethacks.com 
 ![Polymer App](https://github.com/PolymerSearch/api-instructions/blob/master/assets/polymer_app.png?raw=true&s=400)
 
 
