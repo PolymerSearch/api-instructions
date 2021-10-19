@@ -31,7 +31,7 @@ As a header:  `X-API-KEY: &your_api_key`
 
 You must replace `&your_api_key` with your API key.
 
-## Uploading a Dataset
+## Functionality 1: Creating a Polymer app from a raw dataset
 
 The Dataset API allows creating new PolymerSearch sites from your CSV.
 
@@ -149,11 +149,13 @@ Once the task is completed, Polymer returns the final app information that is re
 | Final Success |  [task-success.json](response/task-success.json) | 
 | Error | [error.json](response/error.json)|
 
-[Javascript snippet](javascript.js) |
+### Example code |
+[Javascript API snippet](javascript.js) 
 
-![API Invocation via curl](https://user-images.githubusercontent.com/5403700/126966334-0d409a7d-970b-4fe0-bbdb-18f8f2f77d69.mp4)
+### Short video that demonstrates this end to end
+[Dataset conversion via Polymer API + curl](https://user-images.githubusercontent.com/5403700/126966334-0d409a7d-970b-4fe0-bbdb-18f8f2f77d69.mp4)
 
-## Updating a Dataset
+## Functionality 2: Updating a Dataset for an existing Polymer app
 This endpoint update content, name of the existing dataset.
 
 PUT https://api.polymersearch.com/v1/dataset/:id
@@ -234,9 +236,11 @@ Response Description
 | data.errors | List| List of errors, only if data.success is false
 
 
-## Copying views and config
+## Functionality 3: Copying views and customization from another manually created Polymer app
 
-You can copy all views and config from a different dataset by adding `import_from` object in the request, and including `id` of the dataset and `data` that you want to copy (either `views`, `user_config`, or both).
+Let's say you want to have certain views and customization pre-available when you create a Polymer app using above API. To do this first create a Polymer app on the platform using a similar/same dataset and make all the views and customization/theme changes you want.
+
+You can then copy all views and customization from a different dataset by adding `import_from` object in the request, and including `id` of the dataset and `data` that you want to copy (either `views`, `user_config`, or both).
 
 ```
 {
