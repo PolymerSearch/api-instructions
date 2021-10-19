@@ -1,7 +1,7 @@
 
 # Welcome to PolymerSearch Public API instructions
 
-Polymer Search offers the fastest way to convert any dataset into a fully interactive and intelligent Polymer app. Anyone with basic spreadsheet experience can then use it to get recommended insights, make lightning quick visualizations, find deeper patterns and do complex queries, all visually. 
+**Polymer Search** offers the fastest way to convert any dataset into a fully interactive and intelligent Polymer app. Anyone with basic spreadsheet experience can then use it to get AI-recommended insights, make lightning quick visualizations or reports, find deeper patterns around business outcomes and do complex queries, all visually. 
 
 You can use this API to directly transform data to an web app. PolymerSearch's API endpoints provide a simple interface that can be integrated in 5 minutes.
 
@@ -104,18 +104,48 @@ curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
     }
 }'
 ```
-### Response
+
+### Intermediate response
+
+Polymer returns an intermediate Response until the task is completed. You can use this to poll the status of the task.
+
 ```sh
 {
     "task_id": "60f7bdd7c07d897637ac60f5"
 }
 ```
-**Intermediate response:** Polymer returns an **intermediate response** which you can use to poll the task status.
-**Final success response:** You can use this task ID to poll status of dataset processing. [Check Task -> Fetch Status API](#task-api) for more details.
+
+**Final success response:** 
+Once the task is completed, Polymer returns the final app information that is ready to be used!
+* launch_url indicates the unlisted web url at which the app is available.
+* embed_code indicates the embed code to embed this app into your own app
+
+```json
+{
+    "id": "60f139c67168e50baf7c0d00",
+    "user_id": "60990e185b2895737aa8841c",
+    "status": "Done",
+    "type": "dataset_upload",
+    "created_at": "2021-07-16T07:48:22.435Z",
+    "updated_at": "2021-07-16T07:51:32.692Z",
+    "data":
+    {
+        "message": "file processing done",
+        "launch_url": "https://app.polymersearch.com/polymer/data/60f7bdd7c07d8900b5ac60f8",
+        "embed_code": "<iframe height=\"1200\" scrolling=\"no\" src=\"https://app.polymersearch.com/polymer/data/60f7bdd7c07d8900b5ac60f8\" style=\"overflow:hidden;height:100%;width:100%;position:absolute;top:0;left:0;right:0;bottom:0\" width=\"100%\"></iframe>",
+        "success": true
+    }
+}
+```
+
+[Check Task -> Fetch Status API](#task-api) for more details.
+
+### Types of responses
 
 | Type | Link | Desc
 | ------ | ------ | ------ | 
-| Success | [success.json](response/success.json)| `task_id` to fetch task status
+| Intermediate Success | [success.json](response/success.json)| `task_id` to fetch task status
+| Final Success | [success.json](response/success.json)| `task_id` to fetch task status
 | Error | [error.json](response/error.json)|
 
 [Javascript snippet](javascript.js) |
