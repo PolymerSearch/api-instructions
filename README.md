@@ -1,14 +1,16 @@
 
-# Welcome to PolymerSearch public API instructions
+# Welcome to PolymerSearch Public API instructions
 
-You can use our API to access PolymerSearch API endpoints, that provide various functionality present on our website.
+Polymer Search offers the fastest way to convert any dataset into a fully interactive and intelligent Polymer app. Anyone with basic spreadsheet experience can then use it to get recommended insights, make lightning quick visualizations, find deeper patterns and do complex queries, all visually. 
+
+You can use this API to directly transform data to an web app. PolymerSearch's API endpoints provide a simple interface that can be integrated in 5 minutes.
 
 Detailed API Documentation is available [HERE](https://apidocs.polymersearch.com/).
 
-Before
+### Before: Any raw dataset
 ![Raw CSV](https://github.com/PolymerSearch/api-instructions/blob/master/assets/raw_csv.png?raw=true)
 
-After
+### After: A fully interactive site. Example: https://flixgem.com, https://sheethacks.com 
 ![Polymer App](https://github.com/PolymerSearch/api-instructions/blob/master/assets/polymer_app.png?raw=true)
 
 ## What is PolymerSearch
