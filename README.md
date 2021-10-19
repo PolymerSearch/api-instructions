@@ -7,6 +7,8 @@ You can use this API to directly transform data to an web app. PolymerSearch's A
 
 Detailed API Documentation is available [HERE](https://apidocs.polymersearch.com/).
 
+**Conctact:**  Please contact ash@polymersearch.com for integrating this API with your internal or external business platform.
+
 ### Before: Any raw dataset
 ![Raw CSV](https://github.com/PolymerSearch/api-instructions/blob/master/assets/raw_csv.png?raw=true)
 
@@ -115,7 +117,7 @@ Polymer returns an intermediate Response until the task is completed. You can us
 }
 ```
 
-###Final success response
+### Final success response
 
 Once the task is completed, Polymer returns the final app information that is ready to be used!
 * **launch_url** indicates the unlisted web url at which the app is available.
@@ -139,7 +141,7 @@ Once the task is completed, Polymer returns the final app information that is re
 }
 ```
 
-[Check Task -> Fetch Status API](#task-api) for more details.
+See [Check Task -> Fetch Status API](#task-api) for more details.
 
 ### Types of responses
 
@@ -149,13 +151,13 @@ Once the task is completed, Polymer returns the final app information that is re
 | Final Success |  [task-success.json](response/task-success.json) | 
 | Error | [error.json](response/error.json)|
 
-### Example code |
+### Example code
 [Javascript API snippet](javascript.js) 
 
-### Short video that demonstrates this end to end
+### Short video (1 minute) that demonstrates how easy and fast the process is
 [Dataset conversion via Polymer API + curl](https://user-images.githubusercontent.com/5403700/126966334-0d409a7d-970b-4fe0-bbdb-18f8f2f77d69.mp4)
 
-## Functionality 2: Updating a Dataset for an existing Polymer app
+## Functionality 2: Updating the data for an existing Polymer app
 This endpoint update content, name of the existing dataset.
 
 PUT https://api.polymersearch.com/v1/dataset/:id
