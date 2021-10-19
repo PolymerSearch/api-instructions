@@ -22,7 +22,7 @@ Check out some live examples: https://flixgem.com, https://sheethacks.com
 [Polymer Search](https://polymersearch.com) is the world's fastest path to a data-driven team, regardless of background. It lets you upload or sync a CSV/spreadsheet and creates an interactive web app that you can share easily with others.
 
 
-## Authentication
+## First step: Getting your API key and Authentication 
 
 PolymerSearch API uses API keys to allow access to our endpoints. You can register a new API key as a user, inside workspace settings, on the API Keys section.
 
