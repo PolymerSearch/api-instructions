@@ -10,7 +10,7 @@ Detailed API Documentation is available [HERE](https://apidocs.polymersearch.com
 **Conctact:**  Please contact ash@polymersearch.com for integrating this API with your internal or external business platform.
 
 ### Before: Any raw dataset
-![Raw CSV](https://github.com/PolymerSearch/api-instructions/blob/master/assets/raw_csv.png?raw=true&s=200)
+![Raw CSV](https://github.com/PolymerSearch/api-instructions/blob/master/assets/raw_csv.png?raw=true&s=100)
 
 ### After: A fully interactive site. Example: https://flixgem.com, https://sheethacks.com 
 ![Polymer App](https://github.com/PolymerSearch/api-instructions/blob/master/assets/polymer_app.png?raw=true&s=400)
