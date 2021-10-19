@@ -108,7 +108,8 @@ curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
     "task_id": "60f7bdd7c07d897637ac60f5"
 }
 ```
-You can use this task ID to poll status of dataset processing. [Check Task -> Fetch Status API](#task-api) for more details.
+**Intermediate response:** Polymer returns an **intermediate response** which you can use to poll the task status.
+**Final success response:** You can use this task ID to poll status of dataset processing. [Check Task -> Fetch Status API](#task-api) for more details.
 
 | Type | Link | Desc
 | ------ | ------ | ------ | 
@@ -151,7 +152,10 @@ curl --location --request PUT 'https://api.polymersearch.com/v1/dataset/6151754d
     "task_id": "60f7bdd7c07d897637ac60f5"
 }
 ```
-You can use this task ID to poll status of dataset processing. [Check Task -> Fetch Status API](#task-api) for more details.
+**Intermediate response:** Polymer returns an **intermediate response** which you can use to poll the task status.  
+**Final success response:** You can use this task ID to poll status of dataset processing. [Check Task -> Fetch Status API](#task-api) for more details.
+
+
 Sample Response
 | Type | Link | Desc
 | ------ | ------ | ------ | 
