@@ -115,10 +115,11 @@ Polymer returns an intermediate Response until the task is completed. You can us
 }
 ```
 
-**Final success response:** 
+###Final success response
+
 Once the task is completed, Polymer returns the final app information that is ready to be used!
-* launch_url indicates the unlisted web url at which the app is available.
-* embed_code indicates the embed code to embed this app into your own app
+* **launch_url** indicates the unlisted web url at which the app is available.
+* **embed_code** indicates the embed code to embed this app into your own app
 
 ```json
 {
@@ -145,7 +146,7 @@ Once the task is completed, Polymer returns the final app information that is re
 | Type | Link | Desc
 | ------ | ------ | ------ | 
 | Intermediate Success | [success.json](response/success.json)| `task_id` to fetch task status
-| Final Success | [success.json](response/success.json)| `task_id` to fetch task status
+| Final Success |  [task-success.json](response/task-success.json) | 
 | Error | [error.json](response/error.json)|
 
 [Javascript snippet](javascript.js) |
