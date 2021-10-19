@@ -3,11 +3,11 @@ curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "url": "https://abcc.s3.amazonaws.com/FB+Ads.csv",
-    "name": "FB Ad List Q3.csv",
+    "name": "FB Ad List Q5.csv",
     "import_from": {
         "id": "610b9b87263134f034b5dd73",
         "data": [
-            "views"
+            "views", "user_config"
         ]
     }
 }'
