@@ -153,8 +153,14 @@ See [Check Task -> Fetch Status API](#task-api) for more details.
 | Final Success |  [task-success.json](response/task-success.json) | 
 | Error | [error.json](response/error.json)|
 
-### Example code
+### Example code to get started quickly
 [Javascript API snippet](javascript.js) 
+
+See detailed documentation [HERE](https://apidocs.polymersearch.com/).
+
+#### Postman collection
+You can download the Postman collection directly from [here](PolymerSearch-postman.json).
+
 
 ### Short video (1 minute) that demonstrates how easy and fast the process is
 [Dataset conversion via Polymer API + curl](https://user-images.githubusercontent.com/5403700/126966334-0d409a7d-970b-4fe0-bbdb-18f8f2f77d69.mp4)
@@ -256,10 +262,6 @@ You can then copy all views and customization from a different dataset by adding
     }
 }
 ```
-
-## Postman collection
-
-You can download the Postman collection directly from [here](PolymerSearch-postman.json).
 
 
 ## Rate Limiting
