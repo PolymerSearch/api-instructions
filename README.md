@@ -1,4 +1,5 @@
 
+
 # Welcome to PolymerSearch Public API instructions
 
 **Polymer Search** offers the fastest way to convert any dataset into a fully interactive and intelligent Polymer app. Anyone with basic spreadsheet experience can then use it to get AI-recommended insights, make lightning quick visualizations or reports, find deeper patterns around business outcomes and do complex queries, all visually. 
@@ -40,9 +41,12 @@ You must replace `&your_api_key` with your API key.
 The Dataset API allows creating new PolymerSearch sites from your CSV.
 
 POST https://api.polymersearch.com/v1/dataset
+Body:
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
 |url|true           |URL to a valid public downloadable CSV.            |
+|ingestion_type          |false           |Required only in case of file type input. pass string 'file'.            |
+|file          |false           |Type: file. The file to upload.         |
 |name          |true           |Name of the dataset/file.            |
 |sharing          |false|Desired sharing status for the dataset (public, private, password-protected). Defaults to private.
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
@@ -51,6 +55,7 @@ POST https://api.polymersearch.com/v1/dataset
 |import_from          |false|Object for copy views & user config from an existing dataset (see below).|
 |import_from.id           |true|source dataset ID from which you want to copy views or user-config. You can copy ID from Polymer app UI.|
 |import_from.data           |true|Array containing views, user_config (one of them or both).|
+
 
 ### Example 1 ([see curl](dataset_curl_sample_ex1.sh)): Create a dataset just with a name and dataset URL.
 ```sh
@@ -107,6 +112,15 @@ curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
         ]
     }
 }'
+```
+
+### Example 5 ([see curl](dataset_curl_sample_ex5.sh)): Create a dataset with file upload.
+```sh
+curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--form 'name="FB Ad List Q6.csv"' \
+--form 'file=@"/local_file_path/file_name.csv"' \
+--form 'ingestion_type="file"'
 ```
 
 ### Intermediate response
@@ -180,6 +194,8 @@ Body Params
 |----------------|-------------------------------|-----------------------------|
 |url|true           |URL to a valid public downloadable CSV.            |
 |name          |false           |Name of the dataset/file.|
+|ingestion_type          |false           |Required only in case of file type input. pass string 'file'.            |
+|file          |false           |Type: file. The file to upload.         |
 
 ### Example 1 ([see curl](dataset_update_curl_sample_ex1.sh)): 
 ```sh
@@ -190,6 +206,14 @@ curl --location --request PUT 'https://api.polymersearch.com/v1/dataset/6151754d
     "name": "FB Ad List Q2 C-uploaded.csv",
     "url": "https://test-csv-datasets.s3.us-east-2.amazonaws.com/Test+-+Bank+Loans.csv"
 }'
+```
+### Example 2 ([see curl](dataset_update_curl_sample_ex1.sh)): 
+```sh
+curl --location --request PUT 'https://api.polymersearch.com/v1/dataset/6151754dfad3627deeb8f84b' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--form 'name="FB Ad List Q2 C-uploaded.csv"' \
+--form 'file=@"/local_file_path/file_name.csv"' \
+--form 'ingestion_type="file"'
 ```
 ### Response
 ```sh

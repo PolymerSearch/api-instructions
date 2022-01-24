@@ -1,7 +1,6 @@
-curl --location --request PUT 'https://api.polymersearch.com/v1/dataset/6151754dfad3627deeb8f84b' \
---header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+curl --location --request PUT 'https://dinesh.polymerdev.com/api/v1/dataset/61ee62870cbc00e939065d47' \
+--header 'x-api-key: b90f1814-c760-45a8-9b6d-b5932295f938' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-	"name": "FB Ad List Q2 C-uploaded.csv",
-	"url": "https://test-csv-datasets.s3.us-east-2.amazonaws.com/Test+-+Bank+Loans.csv"
+	"name": "FB Ad List Q2 D-uploaded.csv"
 }'
