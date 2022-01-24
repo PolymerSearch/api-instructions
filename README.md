@@ -44,8 +44,7 @@ POST https://api.polymersearch.com/v1/dataset
 Body:
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
-|url|true           |URL to a valid public downloadable CSV.            |
-|ingestion_type          |false           |Required only in case of file type input. pass string 'file'.            |
+|url|false           |URL to a valid public downloadable CSV.            |
 |file          |false           |Type: file. The file to upload.         |
 |name          |true           |Name of the dataset/file.            |
 |sharing          |false|Desired sharing status for the dataset (public, private, password-protected). Defaults to private.
@@ -118,9 +117,8 @@ curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
 ```sh
 curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
---form 'name="FB Ad List Q6.csv"' \
---form 'file=@"/local_file_path/file_name.csv"' \
---form 'ingestion_type="file"'
+--form 'name="Payment yearly 2022 920.csv"' \
+--form 'file=@"/local_file_path/file_name.csv"'
 ```
 
 ### Intermediate response
@@ -192,9 +190,8 @@ URL Params
 Body Params
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
-|url|true           |URL to a valid public downloadable CSV.            |
+|url|false           |URL to a valid public downloadable CSV.            |
 |name          |false           |Name of the dataset/file.|
-|ingestion_type          |false           |Required only in case of file type input. pass string 'file'.            |
 |file          |false           |Type: file. The file to upload.         |
 
 ### Example 1 ([see curl](dataset_update_curl_sample_ex1.sh)): 
@@ -209,11 +206,10 @@ curl --location --request PUT 'https://api.polymersearch.com/v1/dataset/6151754d
 ```
 ### Example 2 ([see curl](dataset_update_curl_sample_ex1.sh)): 
 ```sh
-curl --location --request PUT 'https://api.polymersearch.com/v1/dataset/6151754dfad3627deeb8f84b' \
+curl --location --request PUT 'https://api.polymersearch.com/v1/dataset/6151754dfad4622deeb8f84b' \
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
---form 'name="FB Ad List Q2 C-uploaded.csv"' \
---form 'file=@"/local_file_path/file_name.csv"' \
---form 'ingestion_type="file"'
+--form 'name="FB Ad List Q2 D-uploaded.csv"' \
+--form 'file=@"/local_file_path/file_name.csv"'
 ```
 ### Response
 ```sh
