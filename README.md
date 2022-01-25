@@ -1,5 +1,6 @@
 
 
+
 # Welcome to PolymerSearch Public API instructions
 
 **Polymer Search** offers the fastest way to convert any dataset into a fully interactive and intelligent Polymer app. Anyone with basic spreadsheet experience can then use it to get AI-recommended insights, make lightning quick visualizations or reports, find deeper patterns around business outcomes and do complex queries, all visually. 
@@ -8,7 +9,7 @@ You can use this API to directly transform data to an web app. PolymerSearch's A
 
 Detailed API Documentation is available [HERE](https://apidocs.polymersearch.com/).
 
-**Conctact:**  Please contact ash@polymersearch.com for integrating this API with your internal or external business platform.
+**Conctact:**  Please contact contact@polymersearch.com for integrating this API with your internal or external business platform.
 
 ### Before: Any raw dataset
 <img src="https://github.com/PolymerSearch/api-instructions/blob/master/assets/raw_csv.png" width="800">
@@ -297,7 +298,6 @@ Response headers contain rate-limiting details:
 - [How to make generated site public?](#how-to-make-generated-site-public)
 - [What formats are supported by Dataset API?](#what-formats-are-supported-by-dataset-api)
 - [Can the Datasets uploaded via Dataset API be seen in PolymerSearch Dashboard?](#can-the-datasets-uploaded-via-dataset-api-be-seen-in-polymersearch-dashboard)
-- [What input sources Dataset API supports?](#what-input-sources-dataset-api-supports)
 - [I received task_id from Dataset API, what are the next steps to get dataset URL?](#i-received-task_id-from-dataset-api-what-are-the-next-steps-to-get-dataset-url)
 
 ### How to make generated site public?
@@ -308,9 +308,6 @@ As of now, PolymerSearch API supports 'CSV' format only. We're planning to add s
 
 ### Can the Datasets uploaded via Dataset API be seen in PolymerSearch Dashboard?
 Yes, all the datasets uploaded API will be visible in PolymerSearch Dashboard.
-
-### What input sources Dataset API supports?
-Currently, it supports publically downloadable CSV URLs only. We’re planning to add support for other sources soon (starting with form-data upload).
 
 ### I received task_id from Dataset API, what are the next steps to get dataset URL?
 You need to invoke Task -> Fetch Status API to fetch dataset launch URL.
