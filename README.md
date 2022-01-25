@@ -41,7 +41,7 @@ You must replace `&your_api_key` with your API key.
 The Dataset API allows creating new PolymerSearch sites from your CSV.
 
 POST https://api.polymersearch.com/v1/dataset
-Body:
+
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
 |url|false           |URL to a valid public downloadable CSV.            |
@@ -204,7 +204,7 @@ curl --location --request PUT 'https://api.polymersearch.com/v1/dataset/6151754d
     "url": "https://test-csv-datasets.s3.us-east-2.amazonaws.com/Test+-+Bank+Loans.csv"
 }'
 ```
-### Example 2 ([see curl](dataset_update_curl_sample_ex1.sh)): 
+### Example 2 ([see curl](dataset_update_curl_sample_ex2.sh)): 
 ```sh
 curl --location --request PUT 'https://api.polymersearch.com/v1/dataset/6151754dfad4622deeb8f84b' \
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
