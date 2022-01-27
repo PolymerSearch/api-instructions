@@ -296,14 +296,10 @@ Response headers contain rate-limiting details:
 -   X-RateLimit-Reset: The remaining window before the rate limit resets in UTC epoch seconds
 
 # Frequently Asked Questions
-- [How to make generated site public?](#how-to-make-generated-site-public)
+- [How do I make the generated site public?](#how-do-i-make-the-generated-site-public)
 - [What formats are supported by Dataset API?](#what-formats-are-supported-by-dataset-api)
-- [Can the Datasets uploaded via Dataset API be seen in PolymerSearch Dashboard?](#can-the-datasets-uploaded-via-dataset-api-be-seen-in-polymersearch-dashboard)
-- [I received task_id from Dataset API, what are the next steps to get dataset URL?](#i-received-task_id-from-dataset-api-what-are-the-next-steps-to-get-dataset-url)
-- **[How do I make the generated site public?](https://github.com/PolymerSearch/api-instructions/tree/form_data_support#how-to-make-generated-site-public)**
-- **[What formats are supported by Dataset API?](https://github.com/PolymerSearch/api-instructions/tree/form_data_support#what-formats-are-supported-by-dataset-api)**
-- **[Can the Datasets uploaded via Dataset API be seen in my Polymer Search dashboard?](https://github.com/PolymerSearch/api-instructions/tree/form_data_support#can-the-datasets-uploaded-via-dataset-api-be-seen-in-polymersearch-dashboard)**
-- **[I received task_id from Dataset API, what are the next steps to get the dataset URL?](https://github.com/PolymerSearch/api-instructions/tree/form_data_support#i-received-task_id-from-dataset-api-what-are-the-next-steps-to-get-dataset-url)**
+- [Can the Datasets uploaded via Dataset API be seen in my Polymer Search dashboard?](#can-the-datasets-uploaded-via-dataset-api-be-seen-in-my-polymer-search-dashboard)
+- [I received task_id from Dataset API, what are the next steps to get the dataset URL?](#i-received-task_id-from-dataset-api-what-are-the-next-steps-to-get-the-dataset-url)
 
 ### How do I make the generated site public?
 Set sharing:public when invoking the Dataset API to make a site publicly accessible.
