@@ -1,34 +1,37 @@
 
-# Welcome to PolymerSearch Public API instructions
 
-**Polymer Search** offers the fastest way to convert any dataset into a fully interactive and intelligent Polymer app. Anyone with basic spreadsheet experience can then use it to get AI-recommended insights, make lightning quick visualizations or reports, find deeper patterns around business outcomes and do complex queries, all visually. 
 
-You can use this API to directly transform data to an web app. PolymerSearch's API endpoints provide a simple interface that can be integrated in 5 minutes.
+
+# **Welcome to the Polymer Search API**
+
+The Polymer Search API  is the fastest way to convert any dataset into a fully interactive web application, allowing anyone to access AI-recommended insights, make lightning quick visualizations or reports, and more.
+
+The API endpoints provide a simple interface that can be integrated quickly.
 
 Detailed API Documentation is available [HERE](https://apidocs.polymersearch.com/).
 
-**Conctact:**  Please contact ash@polymersearch.com for integrating this API with your internal or external business platform.
+**Get in touch**: Contact emir@polymersearch.com for questions about integrating the API with your business platform or other project.
 
 ### Before: Any raw dataset
 <img src="https://github.com/PolymerSearch/api-instructions/blob/master/assets/raw_csv.png" width="800">
 
-### After: A fully interactive site. 
+### After: A fully interactive site
 Check out some live examples: https://flixgem.com, https://sheethacks.com 
 ![Polymer App](https://github.com/PolymerSearch/api-instructions/blob/master/assets/polymer_app.png?raw=true&s=400)
 
 
-## What is PolymerSearch
+## What is Polymer Search?
 
-[Polymer Search](https://polymersearch.com) is the world's fastest path to a data-driven team, regardless of background. It lets you upload or sync a CSV/spreadsheet and creates an interactive web app that you can share easily with others.
+[Polymer Search](https://polymersearch.com) is the world's fastest path to data-empowerment for everyone. Just upload or connect a CSV/spreadsheet, and create an interactive web application that allows individuals of all backgrounds to understand and share data like never before.
 
 
-## First step: Getting your API key and Authentication 
+## First step: Getting your API key and authentication
 
-PolymerSearch API uses API keys to allow access to our endpoints. You can register a new API key as a user, inside workspace settings, on the API Keys section.
+The Polymer Search API uses API keys to regulate endpoint access. You can register a new API key as a user within ‘Workspace Settings’ and the ‘API Keys’ tab.
 
 ![Creating an API key](https://github.com/PolymerSearch/api-instructions/blob/master/assets/api_key_management.png?raw=true)
 
-As of now you can create as many API Keys as you want and give them a name. Once you don't want to use it you can disable it from the dashboard. PolymerSearch API expects the API key to be included in all API requests to the server. There are two ways to include it in requests:
+You can create as many API Keys as you want. If you no longer want to use a key, you may disable it from the dashboard. The Polymer Search API expects an API key to be included in all API requests to the server. There are two ways to include a key in requests:
 
 As a query parameter:  `?api_key=&your_api_key`
 As a header:  `X-API-KEY: &your_api_key`
@@ -40,17 +43,20 @@ You must replace `&your_api_key` with your API key.
 The Dataset API allows creating new PolymerSearch sites from your CSV.
 
 POST https://api.polymersearch.com/v1/dataset
+
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
-|url|true           |URL to a valid public downloadable CSV.            |
+|url|false           |URL to a valid public downloadable CSV.            |
+|file          |false           |Type: file. The file to upload.         |
 |name          |true           |Name of the dataset/file.            |
 |sharing          |false|Desired sharing status for the dataset (public, private, password-protected). Defaults to private.
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
-|starting_row           |false|Desired row count where Polymer should start processing your file.|
+|starting_row           |false|Desired row number where Polymer should start processing your file.|
 |update           |false|Boolean. Force update dataset in case a dataset already exists with the given name.|
 |import_from          |false|Object for copy views & user config from an existing dataset (see below).|
 |import_from.id           |true|source dataset ID from which you want to copy views or user-config. You can copy ID from Polymer app UI.|
 |import_from.data           |true|Array containing views, user_config (one of them or both).|
+
 
 ### Example 1 ([see curl](dataset_curl_sample_ex1.sh)): Create a dataset just with a name and dataset URL.
 ```sh
@@ -109,9 +115,17 @@ curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
 }'
 ```
 
+### Example 5 ([see curl](dataset_curl_sample_ex5.sh)): Create a dataset with file upload.
+```sh
+curl --location --request POST 'https://api.polymersearch.com/v1/dataset' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--form 'name="Payment yearly 2022 920.csv"' \
+--form 'file=@"/local_file_path/file_name.csv"'
+```
+
 ### Intermediate response
 
-Polymer returns an intermediate Response until the task is completed. You can use this to poll the status of the task.
+Polymer returns an intermediate response until the task is completed. You can use this to poll the status of the task.
 
 ```sh
 {
@@ -123,7 +137,7 @@ Polymer returns an intermediate Response until the task is completed. You can us
 
 Once the task is completed, Polymer returns the final app information that is ready to be used!
 * **launch_url** indicates the unlisted web url at which the app is available.
-* **embed_code** indicates the embed code to embed this app into your own app
+* **embed_code** indicates the embed code to embed within your own app
 
 ```json
 {
@@ -162,11 +176,11 @@ See detailed documentation [HERE](https://apidocs.polymersearch.com/).
 You can download the Postman collection directly from [here](PolymerSearch-postman.json).
 
 
-### Short video (1 minute) that demonstrates how easy and fast the process is
+### Short video (1 minute) that demonstrates the process
 [Dataset conversion via Polymer API + curl](https://user-images.githubusercontent.com/5403700/126966334-0d409a7d-970b-4fe0-bbdb-18f8f2f77d69.mp4)
 
 ## Functionality 2: Updating the data for an existing Polymer app
-This endpoint update content, name of the existing dataset.
+This endpoint updates the content and the name of the existing dataset.
 
 PUT https://api.polymersearch.com/v1/dataset/:id
 
@@ -178,8 +192,9 @@ URL Params
 Body Params
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
-|url|true           |URL to a valid public downloadable CSV.            |
+|url|false           |URL to a valid public downloadable CSV.            |
 |name          |false           |Name of the dataset/file.|
+|file          |false           |Type: file. The file to upload.         |
 
 ### Example 1 ([see curl](dataset_update_curl_sample_ex1.sh)): 
 ```sh
@@ -190,6 +205,13 @@ curl --location --request PUT 'https://api.polymersearch.com/v1/dataset/6151754d
     "name": "FB Ad List Q2 C-uploaded.csv",
     "url": "https://test-csv-datasets.s3.us-east-2.amazonaws.com/Test+-+Bank+Loans.csv"
 }'
+```
+### Example 2 ([see curl](dataset_update_curl_sample_ex2.sh)): 
+```sh
+curl --location --request PUT 'https://api.polymersearch.com/v1/dataset/6151754dfad4622deeb8f84b' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--form 'name="FB Ad List Q2 D-uploaded.csv"' \
+--form 'file=@"/local_file_path/file_name.csv"'
 ```
 ### Response
 ```sh
@@ -248,9 +270,9 @@ Response Description
 
 ## Functionality 3: Copying views and customization from another manually created Polymer app
 
-Let's say you want to have certain views and customization pre-available when you create a Polymer app using above API. To do this first create a Polymer app on the platform using a similar/same dataset and make all the views and customization/theme changes you want.
+Let's say you want to have certain views and customization pre-available when you create a Polymer app using the API. To do this, first create an app on the Polymer platform using a similar/same dataset and make all of the views and customizations that you want.
 
-You can then copy all views and customization from a different dataset by adding `import_from` object in the request, and including `id` of the dataset and `data` that you want to copy (either `views`, `user_config`, or both).
+You can then copy all views and customizations from a different dataset by adding import_from object in the request, and including id of the dataset and data that you want to copy (either views, user_config, or both).
 
 ```
 {
@@ -274,23 +296,19 @@ Response headers contain rate-limiting details:
 -   X-RateLimit-Reset: The remaining window before the rate limit resets in UTC epoch seconds
 
 # Frequently Asked Questions
-- [How to make generated site public?](#how-to-make-generated-site-public)
+- [How do I make the generated site public?](#how-do-i-make-the-generated-site-public)
 - [What formats are supported by Dataset API?](#what-formats-are-supported-by-dataset-api)
-- [Can the Datasets uploaded via Dataset API be seen in PolymerSearch Dashboard?](#can-the-datasets-uploaded-via-dataset-api-be-seen-in-polymersearch-dashboard)
-- [What input sources Dataset API supports?](#what-input-sources-dataset-api-supports)
-- [I received task_id from Dataset API, what are the next steps to get dataset URL?](#i-received-task_id-from-dataset-api-what-are-the-next-steps-to-get-dataset-url)
+- [Can the Datasets uploaded via Dataset API be seen in my Polymer Search dashboard?](#can-the-datasets-uploaded-via-dataset-api-be-seen-in-my-polymer-search-dashboard)
+- [I received task_id from Dataset API, what are the next steps to get the dataset URL?](#i-received-task_id-from-dataset-api-what-are-the-next-steps-to-get-the-dataset-url)
 
-### How to make generated site public?
-Set `sharing:public` when invoking the Dataset API to make a site publically accessible.
+### How do I make the generated site public?
+Set sharing:public when invoking the Dataset API to make a site publicly accessible.
 
 ### What formats are supported by Dataset API?
-As of now, PolymerSearch API supports 'CSV' format only. We're planning to add support for xlsx soon.
+The Polymer Search API supports 'CSV' format only.
 
-### Can the Datasets uploaded via Dataset API be seen in PolymerSearch Dashboard?
-Yes, all the datasets uploaded API will be visible in PolymerSearch Dashboard.
+### Can the datasets uploaded via Dataset API be seen in my Polymer Search dashboard?
+Yes, all the datasets uploaded by the API will be visible in your Polymer Search dashboard.
 
-### What input sources Dataset API supports?
-Currently, it supports publically downloadable CSV URLs only. We’re planning to add support for other sources soon (starting with form-data upload).
-
-### I received task_id from Dataset API, what are the next steps to get dataset URL?
-You need to invoke Task -> Fetch Status API to fetch dataset launch URL.
+### I received task_id from Dataset API, what are the next steps to get the dataset URL?
+You need to invoke Task -> Fetch Status API to fetch the dataset launch URL.

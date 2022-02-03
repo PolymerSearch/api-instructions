@@ -1,51 +1,95 @@
 {
-	"info": {
-		"_postman_id": "9f69e45f-ed5c-418d-93e8-d523b37632db",
-		"name": "Polymersearch",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Launch Dataset from remote URL",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "x-api-key",
-						"value": "XXeca66c-21f3-XX39-b407-64e00c62XXXX",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "url",
-							"value": "https://abcc.s3.amazonaws.com/FB+Ads.csv",
-							"type": "text"
-						},
-						{
-							"key": "name",
-							"value": "FB Ads.csv",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "https://api.polymersearch.com/v1/dataset",
-					"protocol": "https",
-					"host": [
-						"dev",
-						"polymerdev",
-						"com"
-					],
-					"path": [
-						"api",
-						"dataset"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+    "info":
+    {
+        "_postman_id": "a2d42c23-a625-44b5-9bf1-f5d4eb915b09",
+        "name": "Polymersearch",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+    {
+        "name": "Launch Dataset from remote URL",
+        "request":
+        {
+            "method": "POST",
+            "header": [
+            {
+                "key": "x-api-key",
+                "value": "XXeca66c-21f3-XX39-b407-64e00c62XXXX",
+                "type": "text"
+            }],
+            "body":
+            {
+                "mode": "urlencoded",
+                "urlencoded": [
+                {
+                    "key": "url",
+                    "value": "https://abcc.s3.amazonaws.com/FB+Ads.csv",
+                    "type": "text"
+                },
+                {
+                    "key": "name",
+                    "value": "FB Ads.csv",
+                    "type": "text"
+                }]
+            },
+            "url":
+            {
+                "raw": "https://api.polymersearch.com/v1/dataset",
+                "protocol": "https",
+                "host": [
+                    "api",
+                    "polymersearch",
+                    "com"
+                ],
+                "path": [
+                    "v1",
+                    "dataset"
+                ]
+            }
+        },
+        "response": []
+    },
+    {
+        "name": "Launch Dataset using form data",
+        "request":
+        {
+            "method": "POST",
+            "header": [
+            {
+                "key": "x-api-key",
+                "value": "XXeca66c-21f3-XX39-b407-64e00c62XXXX",
+                "type": "text"
+            }],
+            "body":
+            {
+                "mode": "formdata",
+                "formdata": [
+                {
+                    "key": "name",
+                    "value": "FB Ads.csv",
+                    "type": "text"
+                },
+                {
+                    "key": "file",
+                    "type": "file",
+                    "src": "/local_file_path/file_name.csv"
+                }]
+            },
+            "url":
+            {
+                "raw": "https://api.polymersearch.com/v1/dataset",
+                "protocol": "https",
+                "host": [
+                    "api",
+                    "polymersearch",
+                    "com"
+                ],
+                "path": [
+                    "v1",
+                    "dataset"
+                ]
+            }
+        },
+        "response": []
+    }]
 }
