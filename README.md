@@ -194,6 +194,8 @@ Body Params
 |file          |false           |Type: file. The file to upload.|
 |sharing          |false|Desired sharing status for the dataset (public, private, password-protected).|
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
+
+
 Note: One of 'url' or 'file' parameter is required.
 
 ### Example 1 ([see curl](dataset_update_curl_sample_ex1.sh)): 
