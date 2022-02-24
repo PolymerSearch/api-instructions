@@ -1,7 +1,4 @@
 
-
-
-
 # **Welcome to the Polymer Search API**
 
 The Polymer Search API  is the fastest way to convert any dataset into a fully interactive web application, allowing anyone to access AI-recommended insights, make lightning quick visualizations or reports, and more.
@@ -57,6 +54,7 @@ POST https://api.polymersearch.com/v1/dataset
 |import_from.id           |true|source dataset ID from which you want to copy views or user-config. You can copy ID from Polymer app UI.|
 |import_from.data           |true|Array containing views, user_config (one of them or both).|
 
+Note: One of 'url' or 'file' parameter is required.
 
 ### Example 1 ([see curl](dataset_curl_sample_ex1.sh)): Create a dataset just with a name and dataset URL.
 ```sh
@@ -194,7 +192,11 @@ Body Params
 |----------------|-------------------------------|-----------------------------|
 |url|false           |URL to a valid public downloadable CSV.            |
 |name          |false           |Name of the dataset/file.|
-|file          |false           |Type: file. The file to upload.         |
+|file          |false           |Type: file. The file to upload.|
+|sharing          |false|Desired sharing status for the dataset (public, private, password-protected).|
+|password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
+
+Note: One of 'url' or 'file' parameter is required.
 
 ### Example 1 ([see curl](dataset_update_curl_sample_ex1.sh)): 
 ```sh
