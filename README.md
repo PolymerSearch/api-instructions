@@ -1,4 +1,5 @@
 
+
 # **Welcome to the Polymer Search API**
 
 The Polymer Search API  is the fastest way to convert any dataset into a fully interactive web application, allowing anyone to access AI-recommended insights, make lightning quick visualizations or reports, and more.
@@ -230,6 +231,70 @@ Sample Response
 | ------ | ------ | ------ | 
 | Success | [success.json](response/success.json)| `task_id` to fetch task status
 | Error | [error.json](response/error.json)|
+
+## Functionality : Fetch existing Polymer apps
+This endpoint fetches the details of existing Polymers apps
+
+GET https://api.polymersearch.com/v1/dataset
+
+Query Params
+|Field                |Mandatory                          |Description                         |
+|----------------|-------------------------------|-----------------------------|
+|source_type|false           |Type: String<br />Filter by remote source name<br />Supported values: [Airtable, GoogleDrive, Dropbox, Upload, Example, Kloudless, API]            |
+|name          |false           |Type: String<br />Filter by name of the datasets. Name of the dataset/file.|
+|pagination          |false           |Type: Object. <br />`limit` Type: Number. Required: True, Default value: 10 <br /> `page` Type: Number. Required: True, Default value: 1<br /> |
+|sort          |false|Type: Object. <br />`key` Type: String. Required: True, Supported values: [desc, asc], Default value: created_at <br /> `order` Type: String. Required: True, Supported values: [name, created_at, num_rows], Default value: desc<br /> |
+|fields          |false|Type: List. <br />Required: True, <br />Supported values: [name, user, user_email, mime_type, source_type, sharing, workspace_id, created_at, num_rows, status, views, sheets, sheet]<br />Default value: [name, user, user_email, mime_type, source_type, sharing, workspace_id, created_at, num_rows, status, sheet]|
+
+Note: 
+
+ - 'name'** field will search on the 'name' attribute of the parent sheets only. It'll not search on 'name' attribute of the child sheets
+    
+-   'name' ignore case while searching and it works on the principle of a like operator with regex **%${given_value}%**
+    
+-   if **'sheets'** included in '**fields'** list, sheets for each parent will be returned with the same fields list
+    
+-   if **'views'** included in '**fields'** list, views[] will be returned for datasets wherever present with [id, userid, name, description, visibility, createdat, uid] attributes
+
+### Example 1 ([see curl](dataset_get_curl_sample_ex1.sh)): 
+```sh
+curl --location --request GET 'https://api.polymersearch.com/v1/dataset' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX'
+```
+### Example 2 ([see curl](dataset_get_curl_sample_ex2.sh)): 
+```sh
+curl --location -g --request GET 'https://api.polymersearch.com/v1/dataset?name=N18&fields=[%22name%22,%22user%22,%22num_rows%22]' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX'
+```
+### Response
+```sh
+{
+    "data": [
+    {
+        "_id": "61f8100fb04dff5a38b4e0ad",
+        "name": "Manual N18 1.xlsx",
+        "user": "61ee36cf2ac79ae07f539bcf",
+        "id": "61f8100fb04dff5a38b4e0ad"
+    },
+    {
+        "_id": "61f8100fb04dff83d9b4e0ae",
+        "name": "MN18 2nd file Nov - Multisheet.xlsx",
+        "user": "61ee36cf2ac79ae07f539bcf",
+        "id": "61f8100fb04dff83d9b4e0ae"
+    }],
+    "pagination":
+    {
+        "page_size": 10,
+        "page_num": 1
+    }
+}
+```
+
+Sample Response
+| Type | Link | Desc
+| ------ | ------ | ------ | 
+| Success | [get_success.json](response/get_success.json)| List of datasets maching query
+| Error | [get_error.json](response/get_error.json)|
 
 
 ## Task API
