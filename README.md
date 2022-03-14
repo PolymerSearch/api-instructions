@@ -296,6 +296,44 @@ Sample Response
 | Success | [get_success.json](response/get_success.json)| List of datasets maching query
 | Error | [get_error.json](response/get_error.json)|
 
+## Functionality : Delete Polymer app
+This endpoint deletes existing Polymers app
+
+DELETE https://api.polymersearch.com/v1/dataset/:id
+
+Body Params
+|Field                |Mandatory                          |Description                         |
+|----------------|-------------------------------|-----------------------------|
+|delete|false           |Type: String<br />Supported values: [trash]<br /> Pass this flag to move dataset to trash           
+
+
+### Example 1 ([see curl](dataset_delete_curl_sample_ex1.sh)): 
+```sh
+curl --location --request DELETE 'https://api.polymersearch.com/v1/dataset/6203c33cc83f04b0ed605c9c' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--header 'Content-Type: application/json'
+```
+### Example 2 ([see curl](dataset_delete_curl_sample_ex2.sh)): 
+```sh
+curl --location --request DELETE 'https://api.polymersearch.com/v1/dataset/6203c33cc83f04b0ed605c9c' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "delete": "trash"
+}'
+```
+### Response
+```sh
+{
+    "success": true
+}
+```
+
+Sample Response
+| Type | Link | Desc
+| ------ | ------ | ------ | 
+| Success | [delete_success.json](response/get_success.json)|
+
 
 ## Task API
 ### Fetch Status
