@@ -232,7 +232,7 @@ Sample Response
 | Success | [success.json](response/success.json)| `task_id` to fetch task status
 | Error | [error.json](response/error.json)|
 
-## Functionality : Fetch existing Polymer apps
+## Functionality 3: Fetch existing Polymer apps
 This endpoint fetches the details of existing Polymers apps
 
 GET https://api.polymersearch.com/v1/dataset
@@ -296,7 +296,7 @@ Sample Response
 | Success | [get_success.json](response/get_success.json)| List of datasets maching query
 | Error | [get_error.json](response/get_error.json)|
 
-## Functionality : Delete Polymer app
+## Functionality 4: Delete Polymer app
 This endpoint deletes existing Polymers app
 
 DELETE https://api.polymersearch.com/v1/dataset/:id
@@ -373,7 +373,7 @@ Response Description
 | data.errors | List| List of errors, only if data.success is false
 
 
-## Functionality 3: Copying views and customization from another manually created Polymer app
+## Functionality : Copying views and customization from another manually created Polymer app
 
 Let's say you want to have certain views and customization pre-available when you create a Polymer app using the API. To do this, first create an app on the Polymer platform using a similar/same dataset and make all of the views and customizations that you want.
 
