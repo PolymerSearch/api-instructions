@@ -1,5 +1,6 @@
 
 
+
 # **Welcome to the Polymer Search API**
 
 The Polymer Search API  is the fastest way to convert any dataset into a fully interactive web application, allowing anyone to access AI-recommended insights, make lightning quick visualizations or reports, and more.
@@ -242,8 +243,10 @@ Query Params
 |----------------|-------------------------------|-----------------------------|
 |source_type|false           |Type: String<br />Filter by remote source name<br />Supported values: [Airtable, GoogleDrive, Dropbox, Upload, Example, Kloudless, API]            |
 |name          |false           |Type: String<br />Filter by name of the datasets. Name of the dataset/file.|
-|pagination          |false           |Type: Object. <br />`limit` Type: Number. Required: True, Default value: 10 <br /> `page` Type: Number. Required: True, Default value: 1<br /> |
-|sort          |false|Type: Object. <br />`key` Type: String. Required: True, Supported values: [desc, asc], Default value: created_at <br /> `order` Type: String. Required: True, Supported values: [name, created_at, num_rows], Default value: desc<br /> |
+|limit          |false           |Type: Number. <br />Default value: 10 |
+|page          |false           |Type: Number. <br />Default value: 1<br /> |
+|sort_key          |false|Type: String. <br />Supported values: [desc, asc], Default value: created_at |
+|sort_order          |false|Type: String. <br />Supported values: [name, created_at, num_rows], Default value: desc<br /> |
 |fields          |false|Type: List. <br />Required: True, <br />Supported values: [name, user, user_email, mime_type, source_type, sharing, workspace_id, created_at, num_rows, status, views, sheets, sheet]<br />Default value: [name, user, user_email, mime_type, source_type, sharing, workspace_id, created_at, num_rows, status, sheet]|
 
 Note: 
