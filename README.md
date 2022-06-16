@@ -571,7 +571,7 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
 ### Response
 ```sh
 {
-    "launch_url": "https://api.polymersearch.com/components/e793422c-71bf-4043-8363-5e5a4f551fc1",
+    "launch_url": "https://app.polymersearch.com/components/e793422c-71bf-4043-8363-5e5a4f551fc1",
     "uid": "e793422c-71bf-4043-8363-5e5a4f551fc1"
 }
 ```
