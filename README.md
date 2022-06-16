@@ -396,7 +396,7 @@ You can then copy all views and customizations from a different dataset by addin
 
 ## Components API
 TBD short description
-![Creating an API key](https://github.com/PolymerSearch/api-instructions/blob/api-instructions/assets/component.png?raw=true)
+![Creating an API key](https://github.com/PolymerSearch/api-instructions/blob/components_api/assets/component.png?raw=true)
 
 ### Create Component
 ---
