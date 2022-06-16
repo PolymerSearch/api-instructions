@@ -420,8 +420,8 @@ Body Params
 
 **Charts Object**
 
-**Field**: type
-**Mandatory**: true
+**Field**: type <br />
+**Mandatory**: true <br />
 **Allowed values**
 - bar 
 - scatter 
@@ -433,7 +433,7 @@ Body Params
 - ai 
 <br >
 
-**Field**: x_axis
+**Field**: x_axis <br />
 **Mandatory**
 
 > if type is **ai** then **not allowed** 
@@ -443,7 +443,7 @@ Body Params
 **Allowed values**: valid column name
 <br >
 
-**Field**: y_axis
+**Field**: y_axis <br />
 **Mandatory**:
 
 > if type is **ai** then **not allowed** 
@@ -453,7 +453,7 @@ Body Params
 **Allowed values**: valid column name
 <br >
 
-**Field**: slice
+**Field**: slice <br />
 **Mandatory**
 
 > if type is **ai** then **not allowed** 
@@ -462,14 +462,14 @@ Body Params
 **Allowed values**: valid column name
 <br >
 
-**Field**: size
-**Mandatory**: true
+**Field**: size <br />
+**Mandatory**: true <br />
 **Allowed values**
 - half 
 - full 
 <br >
 
-**Field**: calculation
+**Field**: calculation <br />
 **Mandatory**
 
 > if type is **ai** then **not allowed** 
