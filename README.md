@@ -1,6 +1,7 @@
 
 
 
+
 # **Welcome to the Polymer Search API**
 
 The Polymer Search API  is the fastest way to convert any dataset into a fully interactive web application, allowing anyone to access AI-recommended insights, make lightning quick visualizations or reports, and more.
@@ -37,7 +38,7 @@ As a header:  `X-API-KEY: &your_api_key`
 
 You must replace `&your_api_key` with your API key.
 
-## Functionality 1: Creating a Polymer app from a raw dataset
+## Creating a Polymer app from a raw dataset
 
 The Dataset API allows creating new PolymerSearch sites from your CSV.
 
@@ -179,7 +180,7 @@ You can download the Postman collection directly from [here](PolymerSearch-postm
 ### Short video (1 minute) that demonstrates the process
 [Dataset conversion via Polymer API + curl](https://user-images.githubusercontent.com/5403700/126966334-0d409a7d-970b-4fe0-bbdb-18f8f2f77d69.mp4)
 
-## Functionality 2: Updating the data for an existing Polymer app
+## Updating the data for an existing Polymer app
 This endpoint updates the content and the name of the existing dataset.
 
 PUT https://api.polymersearch.com/v1/dataset/:id
@@ -233,7 +234,7 @@ Sample Response
 | Success | [success.json](response/success.json)| `task_id` to fetch task status
 | Error | [error.json](response/error.json)|
 
-## Functionality 3: Fetch existing Polymer apps
+## Fetch existing Polymer apps
 This endpoint fetches the details of existing Polymers apps
 
 GET https://api.polymersearch.com/v1/dataset
@@ -299,7 +300,7 @@ Sample Response
 | Success | [get_success.json](response/get_success.json)| List of datasets maching query
 | Error | [get_error.json](response/get_error.json)|
 
-## Functionality 4: Delete Polymer app
+## Delete Polymer app
 This endpoint deletes existing Polymers app
 
 DELETE https://api.polymersearch.com/v1/dataset/:id
@@ -376,7 +377,7 @@ Response Description
 | data.errors | List| List of errors, only if data.success is false
 
 
-## Functionality : Copying views and customization from another manually created Polymer app
+## Copying views and customization from another manually created Polymer app
 
 Let's say you want to have certain views and customization pre-available when you create a Polymer app using the API. To do this, first create an app on the Polymer platform using a similar/same dataset and make all of the views and customizations that you want.
 
@@ -392,6 +393,195 @@ You can then copy all views and customizations from a different dataset by addin
     }
 }
 ```
+
+## Components API
+TBD short description
+![Creating an API key](https://github.com/PolymerSearch/api-instructions/blob/api-instructions/assets/component.png?raw=true)
+
+### Create Component
+---
+
+POST https://api.polymersearch.com/v1/datasets/:dataset_id/components
+
+URL Params
+
+|Field                |Mandatory                          |Description                         |
+|----------------|-------------------------------|-----------------------------|
+|dataset_id|true           |Type: String<br />Dataset ID             |
+
+
+
+Body Params
+|Field                |Mandatory                          |Description                         |
+|----------------|-------------------------------|-----------------------------|
+|name|true           |Type: String<br />Name of the component            |
+|description          |false           |Type: String<br />Short description of the component|
+|charts          |true           |Type: List <br /> |
+
+**Charts Object**
+
+**Field**: type
+**Mandatory**: true
+**Allowed values**
+- bar 
+- scatter 
+- timeseries
+- heatmap
+- lineplot
+- pie
+- dependencywheel
+- ai 
+<br >
+
+**Field**: x_axis
+**Mandatory**
+
+> if type is **ai** then **not allowed** 
+> if type is **dependencywheel**
+> then **not required** for **other types** it is **required**
+
+**Allowed values**: valid column name
+<br >
+
+**Field**: y_axis
+**Mandatory**:
+
+> if type is **ai** then **not allowed** 
+> if type is **pie** then **not required** 
+> for **other types** it is **required**
+
+**Allowed values**: valid column name
+<br >
+
+**Field**: slice
+**Mandatory**
+
+> if type is **ai** then **not allowed** 
+> for **other types** it is **not required**
+> 
+**Allowed values**: valid column name
+<br >
+
+**Field**: size
+**Mandatory**: true
+**Allowed values**
+- half 
+- full 
+<br >
+
+**Field**: calculation
+**Mandatory**
+
+> if type is **ai** then **not allowed** 
+> for **other types** it is **required**
+
+**Allowed values**
+- count 
+- sum
+- average
+- stddev
+- variance
+- max
+- min 
+
+### Example 1: Create basic compont with all non AI charts ([see curl](component_curl_sample_ex1.sh)): 
+```sh
+curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1c221fb918ae401c228/components' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "My Component Name",
+    "description": "My Component Short Description",
+    "charts": [
+        {
+            "type": "pie",
+            "x_axis": "payment_mechanism",
+            "slice": "Submission Date",
+            "calculation": "sum",
+            "size": "full"
+        },
+        {
+            "type": "bar",
+            "x_axis": "Fee Month",
+            "y_axis": "amount",
+            "slice": "Submission Date",
+            "calculation": "average",
+            "size": "half"
+        }
+    ]
+}'
+```
+### Example 2: Create basic compont with all AI charts ([see curl](component_curl_sample_ex2.sh)): 
+```sh
+curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1c221fb918ae401c228/components' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "AI Component",
+    "description": "AI Driven Charts",
+    "charts": [
+        {
+            "type": "ai",
+            "size": "half"
+        },
+        {
+            "type": "ai",
+            "size": "half"
+        },
+        {
+            "type": "ai",
+            "size": "full"
+        }
+    ]
+}'
+```
+
+### Example 3: Create basic compont with all AI and non AI charts ([see curl](component_curl_sample_ex3.sh)): 
+```sh
+curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1c221fb918ae401c228/components' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "AI Component",
+    "description": "AI Driven Charts",
+    "charts": [
+        {   
+            "type": "heatmap",
+            "x_axis": "Fee Month",
+            "y_axis": "amount",
+            "calculation": "max",
+            "size": "full"
+        },
+        {
+            "type": "ai",
+            "size": "half"
+        },
+        {
+            "type": "ai",
+            "size": "half"
+        },
+        {
+            "type": "ai",
+            "size": "full"
+        }
+    ]
+}'
+```
+
+### Response
+```sh
+{
+    "launch_url": "https://api.polymersearch.com/components/e793422c-71bf-4043-8363-5e5a4f551fc1",
+    "uid": "e793422c-71bf-4043-8363-5e5a4f551fc1"
+}
+```
+
+
+Sample Response
+| Type | Link | Desc
+| ------ | ------ | ------ | 
+| Success | [get_success.json](response/create_component_success.json)| Launch URL
+| Error | [get_error.json](response/create_component_error.json)|
 
 
 ## Rate Limiting
