@@ -2,6 +2,7 @@
 
 
 
+
 # **Welcome to the Polymer Search API**
 
 The Polymer Search API  is the fastest way to convert any dataset into a fully interactive web application, allowing anyone to access AI-recommended insights, make lightning quick visualizations or reports, and more.
@@ -403,7 +404,7 @@ TBD short description
 
 POST https://api.polymersearch.com/v1/datasets/:dataset_id/components
 
-URL Params
+    URL Params
 
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
@@ -411,7 +412,8 @@ URL Params
 
 
 
-Body Params
+    Body Params
+
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
 |name|true           |Type: String<br />Name of the component            |
@@ -582,6 +584,157 @@ Sample Response
 | ------ | ------ | ------ | 
 | Success | [get_success.json](response/create_component_success.json)| Launch URL
 | Error | [get_error.json](response/create_component_error.json)|
+
+### Edit Component
+---
+PUT https://api.polymersearch.com/v1/datasets/components/:component_id
+
+    URL Params
+
+|Field                |Mandatory                          |Description                         |
+|----------------|-------------------------------|-----------------------------|
+|component_id|true           |Type: String<br />Component ID             |
+
+
+    Body Params
+
+|Field                |Mandatory                          |Description                         |
+|----------------|-------------------------------|-----------------------------|
+|name|true           |Type: String<br />Name of the component            |
+|description          |false           |Type: String<br />Short description of the component|
+|file_id          |false           |Type: String<br /> Dataset ID|
+|charts          |false           |Type: List <br /> |
+
+**Charts Object**
+Same as described on Create Component request
+Note: Make sure you pass all the charts inside `charts` key
+### Example 1: Edit compont with all non AI charts ([see curl](component_edit_curl_sample_ex1.sh)): 
+```sh
+curl --location --request PUT 'https://api.polymersearch.com/v1/datasets/components/dc2507ac-5e5d-456f-897f-e8ae23544b59' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "charts": [
+        {
+            "type": "timeseries",
+            "x_axis": "payment_mechanism",
+            "y_axis": "Submission Date",
+            "slice": "amount",
+            "calculation": "sum",
+            "size": "full"
+        },
+        {
+            "type": "bar",
+            "x_axis": "Fee Month",
+            "y_axis": "amount",
+            "slice": "Submission Date",
+            "calculation": "min",
+            "size": "full"
+        }
+    ]
+}'
+```
+
+### Example 2: Edit compont with all non AI charts and name ([see curl](component_edit_curl_sample_ex2.sh)): 
+```sh
+curl --location --request PUT 'https://api.polymersearch.com/v1/datasets/components/dc2507ac-5e5d-456f-897f-e8ae23544b59' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Edited Component Name",
+    "charts": [
+        {
+            "type": "bar",
+            "x_axis": "payment_mechanism",
+            "y_axis": "Submission Date",
+            "slice": "amount",
+            "calculation": "sum",
+            "size": "full"
+        },
+        {
+            "type": "bar",
+            "x_axis": "Fee Month",
+            "y_axis": "amount",
+            "slice": "Submission Date",
+            "calculation": "min",
+            "size": "full"
+        }
+    ]
+}'
+```
+
+### Response
+```sh
+{
+    "launch_url": "https://app.polymersearch.com/components/dc2507ac-5e5d-456f-897f-e8ae23544b59",
+    "uid": "dc2507ac-5e5d-456f-897f-e8ae23544b59"
+}
+```
+
+### GET Components
+---
+GET https://api.polymersearch.com/v1/datasets/components
+
+    Query Params
+
+|Field                |Mandatory                          |Description                         |
+|----------------|-------------------------------|-----------------------------|
+|name|false           |Type: String<br />             |
+|file_id|false           |Type: String<br />Dataset ID             |
+|limit|false           |Type: Number<br />Max number of returned results           |
+|page|false           |Type: Number<br />Page Number             |
+|sort_order|false           |Type: String<br />`desc`, `asc`             |
+|sort_key|false           |Type: String<br />Sorting is allowed on `name`, `created_at`              |
+|fields|false           |Type: []String<br />Following Fields are allowed: `name`, `description`, `data`, `file_id`, `user_id`, `uid`             |
+
+### Response
+```sh
+{
+    "data": [
+        {
+            "uid": "aae30776-49c1-4bb1-bd4c-285e1be35435",
+            "file_id": "6278c1c221fb918ae401c228",
+            "user_id": "61ee36cf2ac79ae07f539bcf",
+            "name": "component test Group",
+            "description": "component desc Group",
+            "launch_url": "https://app.polymersearch.com/components/aae30776-49c1-4bb1-bd4c-285e1be35435"
+        },
+        {
+            "uid": "e793422c-71bf-4043-8363-5e5a4f551fc1",
+            "file_id": "6278c1c221fb918ae401c228",
+            "user_id": "61ee36cf2ac79ae07f539bcf",
+            "name": "AI Component",
+            "description": "AI Driven Charts",
+            "launch_url": "https://app.polymersearch.com/components/e793422c-71bf-4043-8363-5e5a4f551fc1"
+        }
+    ],
+    "limit": 10,
+    "page": 1,
+    "sort_key": "created_at",
+    "sort_order": "desc"
+}
+```
+
+### DELETE Component
+---
+DELETE https://api.polymersearch.com/v1/datasets/components/:component_id
+
+    URL Params
+
+|Field                |Mandatory                          |Description                         |
+|----------------|-------------------------------|-----------------------------|
+|component_id|true           |Type: String<br />Component ID             |
+
+### Response
+```sh
+{
+   "success": true
+}
+```
+
+
+
+
 
 
 ## Rate Limiting
