@@ -1,8 +1,3 @@
-
-
-
-
-
 # **Welcome to the Polymer Search API**
 
 The Polymer Search API  is the fastest way to convert any dataset into a fully interactive web application, allowing anyone to access AI-recommended insights, make lightning quick visualizations or reports, and more.
@@ -13,13 +8,13 @@ Detailed API Documentation is available [HERE](https://apidocs.polymersearch.com
 
 **Get in touch**: Contact emir@polymersearch.com for questions about integrating the API with your business platform or other project.
 
-### Before: Any raw dataset
+### Before - Raw file in spreadsheet editor:
 <img src="https://github.com/PolymerSearch/api-instructions/blob/master/assets/raw_csv.png" width="800">
 
-### After: A fully interactive site
-Check out some live examples: https://flixgem.com, https://sheethacks.com 
+### After - A fully interactive web app:
 ![Polymer App](https://github.com/PolymerSearch/api-instructions/blob/master/assets/polymer_app.png?raw=true&s=400)
 
+Check out some live examples: https://flixgem.com, https://sheethacks.com 
 
 ## What is Polymer Search?
 
@@ -39,7 +34,7 @@ As a header:  `X-API-KEY: &your_api_key`
 
 You must replace `&your_api_key` with your API key.
 
-## Creating a Polymer app from a raw dataset
+## Creating a Polymer app from a raw file/dataset
 
 The Dataset API allows creating new PolymerSearch sites from your CSV.
 
@@ -396,8 +391,9 @@ You can then copy all views and customizations from a different dataset by addin
 ```
 
 ## Components API
-TBD short description
-![Creating an API key](https://github.com/PolymerSearch/api-instructions/blob/components_api/assets/component.png?raw=true)
+
+With Components API you can create beautiful charts without creating the full Polymer app. Embed in your site a manually selected chart for your data, or let our powerful AI determine what are the best charts for your data.
+
 
 ### Create Component
 ---
