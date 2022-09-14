@@ -1,4 +1,4 @@
-curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1c221fb918ae401c228/components' \
+curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1c221fb918ae401c228/view' \
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -9,20 +9,16 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
             "type": "heatmap",
             "x_axis": "Fee Month",
             "y_axis": "amount",
-            "calculation": "max",
-            "size": "full"
+            "calculation": "max"
         },
         {
-            "type": "ai",
-            "size": "half"
+            "type": "ai"
         },
         {
-            "type": "ai",
-            "size": "half"
+            "type": "ai"
         },
         {
-            "type": "ai",
-            "size": "full"
+            "type": "ai"
         }
     ]
 }'
