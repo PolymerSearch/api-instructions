@@ -3,7 +3,6 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
 --header 'Content-Type: application/json' \
 --data-raw '{
     "name": "My View Name",
-    "description": "My View Short Description",
     "charts": [
         {
             "type": "pie",

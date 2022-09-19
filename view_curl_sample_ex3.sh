@@ -2,8 +2,7 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "name": "AI Component",
-    "description": "AI Driven Charts",
+    "name": "AI View",
     "charts": [
         {   
             "type": "heatmap",

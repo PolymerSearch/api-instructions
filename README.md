@@ -1,4 +1,5 @@
 
+
 # **Welcome to the Polymer Search API**
 
 The Polymer Search API  is the fastest way to convert any dataset into a fully interactive web application, allowing anyone to access AI-recommended insights, make lightning quick visualizations or reports, and more.
@@ -255,7 +256,7 @@ Note:
     
 -   if **'sheets'** included in '**fields'** list, sheets for each parent will be returned with the same fields list
     
--   if **'views'** included in '**fields'** list, views[] will be returned for datasets wherever present with [id, userid, name, description, visibility, createdat, uid] attributes
+-   if **'views'** included in '**fields'** list, views[] will be returned for datasets wherever present with [id, userid, name, visibility, createdat, uid] attributes
 
 ### Example 1 ([see curl](dataset_get_curl_sample_ex1.sh)): 
 ```sh
@@ -414,7 +415,6 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
 |name|true           |Type: String<br />Name of the view            |
-|description          |false           |Type: String<br />Short description of the view|
 |charts          |true           |Type: List <br /> |
 |sharing          |false|Desired sharing status for the dataset (public, private, password-protected). Default: private|
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
@@ -485,7 +485,6 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
 --header 'Content-Type: application/json' \
 --data-raw '{
     "name": "My View Name",
-    "description": "My View Short Description",
     "charts": [
         {
             "type": "pie",
@@ -510,7 +509,6 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
 --header 'Content-Type: application/json' \
 --data-raw '{
     "name": "AI view",
-    "description": "AI Driven Charts",
     "charts": [
         {
             "type": "ai"
@@ -531,8 +529,7 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "name": "AI Component",
-    "description": "AI Driven Charts",
+    "name": "AI View",
     "charts": [
         {   
             "type": "heatmap",
@@ -584,7 +581,6 @@ PUT https://api.polymersearch.com/v1/datasets/views/:view_uid
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
 |name|true           |Type: String<br />Name of the view            |
-|description          |false           |Type: String<br />Short description of the view|
 |charts          |false           |Type: List <br /> |
 |sharing          |false|Desired sharing status for the dataset (public, private, password-protected).|
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
@@ -665,7 +661,7 @@ GET https://api.polymersearch.com/v1/datasets/views
 |page|false           |Type: Number<br />Page Number             |
 |sort_order|false           |Type: String<br />`desc`, `asc`             |
 |sort_key|false           |Type: String<br />Sorting is allowed on `name`, `created_at`              |
-|fields|false           |Type: []String<br />Following Fields are allowed: `name`, `description`, `visibility`, `file_id`, `user_id`, `uid`, `created_at`, `updated_at`             |
+|fields|false           |Type: []String<br />Following Fields are allowed: `name`, `sharing`, `file_id`, `user_id`, `uid`, `created_at`, `updated_at`             |
 
 ### Response
 ```sh
@@ -674,8 +670,7 @@ GET https://api.polymersearch.com/v1/datasets/views
     {
         "uid": "40d4b950-78bb-4d6c-8b06-9fd20dbdf704",
         "name": "component test Group view 1 4",
-        "description": "component desc Group",
-        "visibility": "password-protected",
+        "sharing": "password-protected",
         "launch_url": "https://dinesh.polymerdev.com/views/6278c1c221fb918ae401c228/40d4b950-78bb-4d6c-8b06-9fd20dbdf704",
         "file_id": "6278c1c221fb918ae401c228",
         "user_id": "61ee36cf2ac79ae07f539bcf",
@@ -685,8 +680,7 @@ GET https://api.polymersearch.com/v1/datasets/views
     {
         "uid": "d85a90ec-ed66-432f-bdfa-488bf298ad7e",
         "name": "component test Group view 1 3",
-        "description": "component desc Group",
-        "visibility": "password-protected",
+        "sharing": "password-protected",
         "launch_url": "https://dinesh.polymerdev.com/views/6278c1c221fb918ae401c228/d85a90ec-ed66-432f-bdfa-488bf298ad7e",
         "file_id": "6278c1c221fb918ae401c228",
         "user_id": "61ee36cf2ac79ae07f539bcf",
@@ -716,10 +710,6 @@ DELETE https://api.polymersearch.com/v1/datasets/views/:view_uid
    "success": true
 }
 ```
-
-
-
-
 
 
 ## Rate Limiting

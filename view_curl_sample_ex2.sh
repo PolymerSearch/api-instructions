@@ -3,7 +3,6 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
 --header 'Content-Type: application/json' \
 --data-raw '{
     "name": "AI view",
-    "description": "AI Driven Charts",
     "charts": [
         {
             "type": "ai"
