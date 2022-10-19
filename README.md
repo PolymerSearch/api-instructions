@@ -1,3 +1,5 @@
+
+
 # **Welcome to the Polymer Search API**
 
 The Polymer Search API  is the fastest way to convert any dataset into a fully interactive web application, allowing anyone to access AI-recommended insights, make lightning quick visualizations or reports, and more.
@@ -254,7 +256,7 @@ Note:
     
 -   if **'sheets'** included in '**fields'** list, sheets for each parent will be returned with the same fields list
     
--   if **'views'** included in '**fields'** list, views[] will be returned for datasets wherever present with [id, userid, name, description, visibility, createdat, uid] attributes
+-   if **'views'** included in '**fields'** list, views[] will be returned for datasets wherever present with [id, userid, name, visibility, createdat, uid] attributes
 
 ### Example 1 ([see curl](dataset_get_curl_sample_ex1.sh)): 
 ```sh
@@ -390,15 +392,15 @@ You can then copy all views and customizations from a different dataset by addin
 }
 ```
 
-## Components API
+## Views API
 
-With Components API you can create beautiful charts without creating the full Polymer app. Embed in your site a manually selected chart for your data, or let our powerful AI determine what are the best charts for your data.
+With views API you can create beautiful charts without creating the full Polymer app. Embed in your site a manually selected chart for your data, or let our powerful AI determine what are the best charts for your data.
 
 
-### Create Component
+### Create View
 ---
 
-POST https://api.polymersearch.com/v1/datasets/:dataset_id/components
+POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 
     URL Params
 
@@ -412,9 +414,10 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/components
 
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
-|name|true           |Type: String<br />Name of the component            |
-|description          |false           |Type: String<br />Short description of the component|
+|name|true           |Type: String<br />Name of the view            |
 |charts          |true           |Type: List <br /> |
+|sharing          |false|Desired sharing status for the dataset (public, private, password-protected). Default: private|
+|password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
 
 **Charts Object**
 
@@ -460,13 +463,6 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/components
 **Allowed values**: valid column name
 <br >
 
-**Field**: size <br />
-**Mandatory**: true <br />
-**Allowed values**
-- half 
-- full 
-<br >
-
 **Field**: calculation <br />
 **Mandatory**
 
@@ -482,85 +478,73 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/components
 - max
 - min 
 
-### Example 1: Create basic compont with all non AI charts ([see curl](component_curl_sample_ex1.sh)): 
+### Example 1: Create basic view with all non AI charts ([see curl](view_curl_sample_ex1.sh)): 
 ```sh
-curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1c221fb918ae401c228/components' \
+curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1c221fb918ae401c228/view' \
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "name": "My Component Name",
-    "description": "My Component Short Description",
+    "name": "My View Name",
     "charts": [
         {
             "type": "pie",
             "x_axis": "payment_mechanism",
             "slice": "Submission Date",
-            "calculation": "sum",
-            "size": "full"
+            "calculation": "sum"
         },
         {
             "type": "bar",
             "x_axis": "Fee Month",
             "y_axis": "amount",
             "slice": "Submission Date",
-            "calculation": "average",
-            "size": "half"
+            "calculation": "average"
         }
     ]
 }'
 ```
-### Example 2: Create basic compont with all AI charts ([see curl](component_curl_sample_ex2.sh)): 
+### Example 2: Create basic view with all AI charts ([see curl](view_curl_sample_ex2.sh)): 
 ```sh
-curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1c221fb918ae401c228/components' \
+curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1c221fb918ae401c228/view' \
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "name": "AI Component",
-    "description": "AI Driven Charts",
+    "name": "AI view",
     "charts": [
         {
-            "type": "ai",
-            "size": "half"
+            "type": "ai"
         },
         {
-            "type": "ai",
-            "size": "half"
+            "type": "ai"
         },
         {
-            "type": "ai",
-            "size": "full"
+            "type": "ai"
         }
     ]
 }'
 ```
 
-### Example 3: Create basic compont with all AI and non AI charts ([see curl](component_curl_sample_ex3.sh)): 
+### Example 3: Create basic view with all AI and non AI charts ([see curl](view_curl_sample_ex3.sh)): 
 ```sh
-curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1c221fb918ae401c228/components' \
+curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1c221fb918ae401c228/view' \
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "name": "AI Component",
-    "description": "AI Driven Charts",
+    "name": "AI View",
     "charts": [
         {   
             "type": "heatmap",
             "x_axis": "Fee Month",
             "y_axis": "amount",
-            "calculation": "max",
-            "size": "full"
+            "calculation": "max"
         },
         {
-            "type": "ai",
-            "size": "half"
+            "type": "ai"
         },
         {
-            "type": "ai",
-            "size": "half"
+            "type": "ai"
         },
         {
-            "type": "ai",
-            "size": "full"
+            "type": "ai"
         }
     ]
 }'
@@ -569,7 +553,7 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
 ### Response
 ```sh
 {
-    "launch_url": "https://app.polymersearch.com/components/e793422c-71bf-4043-8363-5e5a4f551fc1",
+    "launch_url": "https://app.polymersearch.com/views/e793422c-71bf-4043-8363-5e5a4f551fc1",
     "uid": "e793422c-71bf-4043-8363-5e5a4f551fc1"
 }
 ```
@@ -578,35 +562,35 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
 Sample Response
 | Type | Link | Desc
 | ------ | ------ | ------ | 
-| Success | [get_success.json](response/create_component_success.json)| Launch URL
-| Error | [get_error.json](response/create_component_error.json)|
+| Success | [get_success.json](response/create_view_success.json)| Launch URL
+| Error | [get_error.json](response/create_view_error.json)|
 
-### Edit Component
+### Edit View
 ---
-PUT https://api.polymersearch.com/v1/datasets/components/:component_id
+PUT https://api.polymersearch.com/v1/datasets/views/:view_uid
 
     URL Params
 
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
-|component_id|true           |Type: String<br />Component ID             |
+|view_id|true           |Type: String<br />View UID             |
 
 
     Body Params
 
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
-|name|true           |Type: String<br />Name of the component            |
-|description          |false           |Type: String<br />Short description of the component|
-|file_id          |false           |Type: String<br /> Dataset ID|
+|name|true           |Type: String<br />Name of the view            |
 |charts          |false           |Type: List <br /> |
+|sharing          |false|Desired sharing status for the dataset (public, private, password-protected).|
+|password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
 
 **Charts Object**
-Same as described on Create Component request
+Same as described on Create View request
 Note: Make sure you pass all the charts inside `charts` key
-### Example 1: Edit compont with all non AI charts ([see curl](component_edit_curl_sample_ex1.sh)): 
+### Example 1: Edit view with all non AI charts ([see curl](view_edit_curl_sample_ex1.sh)): 
 ```sh
-curl --location --request PUT 'https://api.polymersearch.com/v1/datasets/components/dc2507ac-5e5d-456f-897f-e8ae23544b59' \
+curl --location --request PUT 'https://api.polymersearch.com/v1/datasets/views/dc2507ac-5e5d-456f-897f-e8ae23544b59' \
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -616,44 +600,40 @@ curl --location --request PUT 'https://api.polymersearch.com/v1/datasets/compone
             "x_axis": "payment_mechanism",
             "y_axis": "Submission Date",
             "slice": "amount",
-            "calculation": "sum",
-            "size": "full"
+            "calculation": "sum"
         },
         {
             "type": "bar",
             "x_axis": "Fee Month",
             "y_axis": "amount",
             "slice": "Submission Date",
-            "calculation": "min",
-            "size": "full"
+            "calculation": "min"
         }
     ]
 }'
 ```
 
-### Example 2: Edit compont with all non AI charts and name ([see curl](component_edit_curl_sample_ex2.sh)): 
+### Example 2: Edit view with all non AI charts and name ([see curl](view_edit_curl_sample_ex2.sh)): 
 ```sh
-curl --location --request PUT 'https://api.polymersearch.com/v1/datasets/components/dc2507ac-5e5d-456f-897f-e8ae23544b59' \
+curl --location --request PUT 'https://api.polymersearch.com/v1/datasets/views/dc2507ac-5e5d-456f-897f-e8ae23544b59' \
 --header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "name": "Edited Component Name",
+    "name": "Edited View Name",
     "charts": [
         {
             "type": "bar",
             "x_axis": "payment_mechanism",
             "y_axis": "Submission Date",
             "slice": "amount",
-            "calculation": "sum",
-            "size": "full"
+            "calculation": "sum"
         },
         {
             "type": "bar",
             "x_axis": "Fee Month",
             "y_axis": "amount",
             "slice": "Submission Date",
-            "calculation": "min",
-            "size": "full"
+            "calculation": "min"
         }
     ]
 }'
@@ -662,14 +642,14 @@ curl --location --request PUT 'https://api.polymersearch.com/v1/datasets/compone
 ### Response
 ```sh
 {
-    "launch_url": "https://app.polymersearch.com/components/dc2507ac-5e5d-456f-897f-e8ae23544b59",
+    "launch_url": "https://app.polymersearch.com/views/dc2507ac-5e5d-456f-897f-e8ae23544b59",
     "uid": "dc2507ac-5e5d-456f-897f-e8ae23544b59"
 }
 ```
 
-### GET Components
+### GET Views
 ---
-GET https://api.polymersearch.com/v1/datasets/components
+GET https://api.polymersearch.com/v1/datasets/views
 
     Query Params
 
@@ -681,29 +661,32 @@ GET https://api.polymersearch.com/v1/datasets/components
 |page|false           |Type: Number<br />Page Number             |
 |sort_order|false           |Type: String<br />`desc`, `asc`             |
 |sort_key|false           |Type: String<br />Sorting is allowed on `name`, `created_at`              |
-|fields|false           |Type: []String<br />Following Fields are allowed: `name`, `description`, `data`, `file_id`, `user_id`, `uid`             |
+|fields|false           |Type: []String<br />Following Fields are allowed: `name`, `sharing`, `file_id`, `user_id`, `uid`, `created_at`, `updated_at`             |
 
 ### Response
 ```sh
 {
     "data": [
-        {
-            "uid": "aae30776-49c1-4bb1-bd4c-285e1be35435",
-            "file_id": "6278c1c221fb918ae401c228",
-            "user_id": "61ee36cf2ac79ae07f539bcf",
-            "name": "component test Group",
-            "description": "component desc Group",
-            "launch_url": "https://app.polymersearch.com/components/aae30776-49c1-4bb1-bd4c-285e1be35435"
-        },
-        {
-            "uid": "e793422c-71bf-4043-8363-5e5a4f551fc1",
-            "file_id": "6278c1c221fb918ae401c228",
-            "user_id": "61ee36cf2ac79ae07f539bcf",
-            "name": "AI Component",
-            "description": "AI Driven Charts",
-            "launch_url": "https://app.polymersearch.com/components/e793422c-71bf-4043-8363-5e5a4f551fc1"
-        }
-    ],
+    {
+        "uid": "40d4b950-78bb-4d6c-8b06-9fd20dbdf704",
+        "name": "component test Group view 1 4",
+        "sharing": "password-protected",
+        "launch_url": "https://dinesh.polymerdev.com/views/6278c1c221fb918ae401c228/40d4b950-78bb-4d6c-8b06-9fd20dbdf704",
+        "file_id": "6278c1c221fb918ae401c228",
+        "user_id": "61ee36cf2ac79ae07f539bcf",
+        "created_at": "2022-09-13T10:35:28.349Z",
+        "updated_at": "2022-09-13T10:54:02.214Z"
+    },
+    {
+        "uid": "d85a90ec-ed66-432f-bdfa-488bf298ad7e",
+        "name": "component test Group view 1 3",
+        "sharing": "password-protected",
+        "launch_url": "https://dinesh.polymerdev.com/views/6278c1c221fb918ae401c228/d85a90ec-ed66-432f-bdfa-488bf298ad7e",
+        "file_id": "6278c1c221fb918ae401c228",
+        "user_id": "61ee36cf2ac79ae07f539bcf",
+        "created_at": "2022-09-13T10:33:30.863Z",
+        "updated_at": "2022-09-13T10:33:30.863Z"
+    }],
     "limit": 10,
     "page": 1,
     "sort_key": "created_at",
@@ -711,15 +694,15 @@ GET https://api.polymersearch.com/v1/datasets/components
 }
 ```
 
-### DELETE Component
+### DELETE View
 ---
-DELETE https://api.polymersearch.com/v1/datasets/components/:component_id
+DELETE https://api.polymersearch.com/v1/datasets/views/:view_uid
 
     URL Params
 
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
-|component_id|true           |Type: String<br />Component ID             |
+|view_uid|true           |Type: String<br />View UID             |
 
 ### Response
 ```sh
@@ -727,10 +710,6 @@ DELETE https://api.polymersearch.com/v1/datasets/components/:component_id
    "success": true
 }
 ```
-
-
-
-
 
 
 ## Rate Limiting
