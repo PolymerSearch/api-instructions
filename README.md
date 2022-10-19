@@ -421,8 +421,8 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 
 **Charts Object**
 
-**Field**: type <br />
-**Mandatory**: true <br />
+**Field**: type 
+**Mandatory**: true 
 **Allowed values**
 - bar 
 - scatter 
@@ -434,7 +434,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 - ai 
 <br >
 
-**Field**: x_axis <br />
+**Field**: x_axis 
 **Mandatory**
 
 > if type is **ai** then **not allowed** 
@@ -444,8 +444,8 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 **Allowed values**: valid column name
 <br >
 
-**Field**: y_axis <br />
-**Mandatory**:
+**Field**: y_axis
+**Mandatory**
 
 > if type is **ai** then **not allowed** 
 > if type is **pie** then **not required** 
@@ -454,7 +454,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 **Allowed values**: valid column name
 <br >
 
-**Field**: slice <br />
+**Field**: slice
 **Mandatory**
 
 > if type is **ai** then **not allowed** 
@@ -463,7 +463,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 **Allowed values**: valid column name
 <br >
 
-**Field**: calculation <br />
+**Field**: calculation
 **Mandatory**
 
 > if type is **ai** then **not allowed** 
@@ -477,6 +477,17 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 - variance
 - max
 - min 
+
+<br>
+
+**Field**: width 
+**Mandatory**: False
+**Allowed values**
+- one-third 
+- two-thirds
+- full
+
+Default value: full
 
 ### Example 1: Create basic view with all non AI charts ([see curl](view_curl_sample_ex1.sh)): 
 ```sh
