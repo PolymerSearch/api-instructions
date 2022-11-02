@@ -425,19 +425,21 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 **Mandatory**: true 
 **Allowed values**
 - bar 
+- column
 - scatter 
 - timeseries
 - heatmap
 - lineplot
 - pie
 - dependencywheel
+- rich-text-insight
 - ai 
 <br >
 
 **Field**: x_axis 
 **Mandatory**
 
-> if type is **ai** then **not allowed** 
+> if type in **ai** or **rich-text-insight** then **not allowed** 
 > if type is **dependencywheel**
 > then **not required** for **other types** it is **required**
 
@@ -447,7 +449,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 **Field**: y_axis
 **Mandatory**
 
-> if type is **ai** then **not allowed** 
+> if type in **ai** or **rich-text-insight** then **not allowed**
 > if type is **pie** then **not required** 
 > for **other types** it is **required**
 
@@ -457,7 +459,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 **Field**: slice
 **Mandatory**
 
-> if type is **ai** then **not allowed** 
+> if type in **ai** or **rich-text-insight** then **not allowed**
 > for **other types** it is **not required**
 > 
 **Allowed values**: valid column name
@@ -466,7 +468,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 **Field**: calculation
 **Mandatory**
 
-> if type is **ai** then **not allowed** 
+> if type in **ai** or **rich-text-insight** then **not allowed**
 > for **other types** it is **required**
 
 **Allowed values**
@@ -488,6 +490,11 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 - full
 
 Default value: full
+<br>
+
+**Field**: html 
+> if type is **rich-text-insight** then **required**
+> for **other types** it is **not allowed**
 
 ### Example 1: Create basic view with all non AI charts ([see curl](view_curl_sample_ex1.sh)): 
 ```sh
