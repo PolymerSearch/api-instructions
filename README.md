@@ -415,11 +415,11 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 |Field                |Mandatory                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
 |name|true           |Type: String<br />Name of the view            |
-|charts          |true           |Type: List <br /> |
+|charts          |true           |Type: List [Chart Object] <br /> |
 |sharing          |false|Desired sharing status for the dataset (public, private, password-protected). Default: private|
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
 
-**Charts Object**
+**Chart Object**
 
 **Field**: type 
 **Mandatory**: true 
@@ -464,6 +464,55 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 > 
 **Allowed values**: valid column name
 <br >
+
+**Field**: filters
+
+> if type in **ai** or **rich-text-insight** then **not allowed**
+> for **other types** it is **not required**
+> 
+**Allowed values**: object
+Following filters can be applied
+ - Filter date columns with dynamic date range like last 30 days, last year etc
+ - Filter numerical columns with ranges like amount between 25 to 45.
+ - Text search in categorical columns like payment mechanism including cash and demand draft.
+ -   Text search in categorical columns like payment mechanism excluding cash
+Example payload
+
+    {
+        "Submission Date": [
+        {
+            "value": "last_30_days"
+        }],
+        "amount": [
+        {
+            "value": [
+                10,
+                20
+            ]
+        }],
+        "Payment Mechanism": [
+        {
+            "value": "cash",
+            "operation": "INCLUDING"
+        }]
+    }
+Following filter will be read as 
+
+> Submission Date within last 30 days 
+> AND 
+> amount between range 10 to 20 
+> AND
+> Payment Mechanism INCLUDING cash
+
+Possible dynamic date ranges
+ - last_30_days
+ - last_90_days
+
+Possible operations
+ - INCLUDING
+ - EXCLUDING
+<br>
+
 
 **Field**: calculation
 **Mandatory**
@@ -565,6 +614,39 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
             "type": "ai"
         }
     ]
+}'
+```
+
+### Example 4: Create view with a rich text block and column chart with filters([see curl](view_curl_sample_ex4.sh)): 
+```sh
+curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1c221fb918ae401c228/view' \
+--header 'x-api-key: XXeca66c-21f3-XX39-b407-64e00c62XXXX' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Filtered",
+    "charts": [
+    {
+        "type": "rich-text-insight",
+        "html": "<p>This is amount received in last 30 days</p><p>&nbsp;</p><hr><p>&nbsp;</p><p><strong>This is only </strong><span style=\"background-color:hsl(6,59%,50%);\"><strong>CASH</strong></span></p>"
+    },
+    {
+        "type": "column",
+        "x_axis": "payment_mechanism",
+        "y_axis": "amount",
+        "calculation": "count",
+        "filters":
+        {
+            "submission_date": [
+            {
+                "value": "last_30_days"
+            }],
+            "payment_mechanism": [
+            {
+                "value": "cash",
+                "operation": "INCLUDING"
+            }]
+        }
+    }]
 }'
 ```
 
