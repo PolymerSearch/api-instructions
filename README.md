@@ -481,7 +481,7 @@ Example payload
     {
         "Submission Date": [
         {
-            "value": "last_30_days"
+            "value": "last 30 days"
         }],
         "amount": [
         {
@@ -505,8 +505,11 @@ Following filter will be read as
 > Payment Mechanism INCLUDING cash
 
 Possible dynamic date ranges
- - last_30_days
- - last_90_days
+ - last day
+ - last 7 days
+ - last 30 days
+ - last 90 days
+ - last year
 
 Possible operations
  - INCLUDING
@@ -638,7 +641,7 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
         {
             "submission_date": [
             {
-                "value": "last_30_days"
+                "value": "last 30 days"
             }],
             "payment_mechanism": [
             {
