@@ -509,7 +509,8 @@ Possible dynamic date ranges
  - last 7 days
  - last 30 days
  - last 90 days
- - last year
+ - last 6 months
+ - last 12 months
 
 Possible operations
  - INCLUDING
