@@ -1,5 +1,6 @@
 
 
+
 # **Welcome to the Polymer Search API**
 
 The Polymer Search API  is the fastest way to convert any dataset into a fully interactive web application, allowing anyone to access AI-recommended insights, make lightning quick visualizations or reports, and more.
@@ -420,56 +421,325 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
 
 **Chart Object**
+**Bar Chart**
+```
+{
+    "type": "bar",
+    "x_axis": [
+        "spend",
+        "Clicks (all)"
+    ],
+    "y_axis": "campaign_status",
+    "calculation": "sum",
+    "y_axis_log": true,
+    "show_annotations": true,
+    "show_stacked": false
+}
+```
 
-**Field**: type 
-**Mandatory**: true 
-**Allowed values**
-- bar 
-- column
-- scatter 
-- timeseries
-- heatmap
-- lineplot
-- pie
-- dependencywheel
-- rich-text-insight
-- ai 
+
+| Field | Datatype | Mandatory | Desc
+| ------ | ------ | ------ | --------
+| type |String |Yes |bar
+| x_axis |List |No |list of valid column name
+| y_axis | String| Yes| valid column name
+| calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| slice | String| No| valid column name
+| show_annotations | Boolean| No | Annotate each segment by its value
+| show_stacked | Boolean| No | Show as stack
+| is_percentage | Boolean| No | Show as percentage
+| y_axis_log | Boolean| No | Use logarithmic scale for Y-Axis
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
+| filters | Object| No | Filter Object
+
 <br >
 
-**Field**: x_axis 
-**Mandatory**
+**Column Chart**
+```
+{
+    "type": "column",
+    "x_axis": "campaign_status",
+    "y_axis": [
+        "spend",
+        "Clicks (all)"
+    ],
+    "calculation": "sum",
+    "show_annotations": true,
+    "show_stacked": false
+}
+```
 
-> if type in **ai** or **rich-text-insight** then **not allowed** 
-> if type is **dependencywheel**
-> then **not required** for **other types** it is **required**
 
-**Allowed values**: valid column name
+| Field | Datatype | Mandatory | Desc
+| ------ | ------ | ------ | --------
+| type |String |Yes |column
+| x_axis | String| Yes| valid column name
+| y_axis |List |No |list of valid column name
+| calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| slice | String| No| valid column name
+| show_annotations | Boolean| No | Annotate each segment by its value
+| show_stacked | Boolean| No | Show as stack
+| is_percentage | Boolean| No | Show as percentage
+| x_axis_log | Boolean| No | Use logarithmic scale for X-Axis
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
+| filters | Object| No | Filter Object
+
 <br >
 
-**Field**: y_axis
-**Mandatory**
+**Column Chart**
+```
+{
+    "type": "scatter",
+    "x_axis": "spend",
+    "y_axis": "cost_per_initiate_checkout",
+    "calculation": "sum",
+    "y_axis_log": true,
+    "x_axis_log": true
+}
+```
 
-> if type in **ai** or **rich-text-insight** then **not allowed**
-> if type is **pie** then **not required** 
-> for **other types** it is **required**
 
-**Allowed values**: valid column name
+| Field | Datatype | Mandatory | Desc
+| ------ | ------ | ------ | --------
+| type |String |Yes |scatter
+| x_axis | String| Yes| valid column name
+| y_axis |String |Yes |valid column name
+| calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| slice | String| No| valid column name
+| x_axis_log | Boolean| No | Use logarithmic scale for X-Axis
+| y_axis_log | Boolean| No | Use logarithmic scale for Y-Axis
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
+| filters | Object| No | Filter Object
+
 <br >
 
-**Field**: slice
-**Mandatory**
+**TIMESERIES Chart**
+```
+{
+    "type": "timeseries",
+    "x_axis": "date",
+    "calculation": "sum",
+    "y_axis_log": true,
+    "exclude_empty_string": false,
+    "group_by": "quarter",
+    "is_area": true
+}
+```
 
-> if type in **ai** or **rich-text-insight** then **not allowed**
-> for **other types** it is **not required**
-> 
-**Allowed values**: valid column name
+
+| Field | Datatype | Mandatory | Desc
+| ------ | ------ | ------ | --------
+| type |String |Yes |timeseries
+| x_axis | String| Yes| valid column name
+| y_axis |String |No |valid column name
+| calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| slice | String| No| valid column name
+| is_area | Boolean| No | Use area chart
+| y_axis_log | Boolean| No | Use logarithmic scale for Y-Axis
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| group_by | String| No | Any value from day, week, month, quarter, year
+| width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
+| filters | Object| No | Filter Object
+
 <br >
 
-**Field**: filters
+**HEATMAP Chart**
+```
+{
+    "type": "heatmap",
+    "y_axis": "account_currency",
+    "calculation": "sum",
+    "exclude_empty_string": false,
+    "show_annotations": true
+}
+```
 
-> if type in **ai** or **rich-text-insight** then **not allowed**
-> for **other types** it is **not required**
-> 
+| Field | Datatype | Mandatory | Desc
+| ------ | ------ | ------ | --------
+| type |String |Yes |heatmap
+| y_axis |String |Yes |valid column name
+| x_axis | String| No| valid column name
+| calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| slice | String| No| valid column name
+| show_annotations | Boolean| No | Annotate each segment by its value
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
+| filters | Object| No | Filter Object
+
+<br >
+
+**LINEPLOT Chart**
+```
+{
+    "type": "lineplot",
+    "x_axis": "spend",
+    "y_axis": "link_click",
+    "calculation": "sum"
+}
+```
+
+| Field | Datatype | Mandatory | Desc
+| ------ | ------ | ------ | --------
+| type |String |Yes |lineplot
+| y_axis |String |Yes |valid column name
+| x_axis | String| Yes| valid column name
+| calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| slice | String| No| valid column name
+| y_axis_log | Boolean| No | Use logarithmic scale for Y-Axis
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
+| filters | Object| No | Filter Object
+
+<br >
+
+**PIE Chart**
+```
+{
+    "type": "pie",
+    "columns": [
+        "date"
+    ],
+    "exclude_empty_string": false,
+    "show_annotations": true
+}
+```
+
+| Field | Datatype | Mandatory | Desc
+| ------ | ------ | ------ | --------
+| type |String |Yes |pie
+| columns |List |Yes |list of valid column name
+| show_annotations | Boolean| No | Annotate each segment by its value
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
+| filters | Object| No | Filter Object
+
+<br >
+
+**OUTLIERS Chart**
+```
+{
+    "type": "outliers",
+    "metric": "spend",
+    "calculation": "count",
+    "exclude_empty_string": false,
+    "influencing_columns": [
+        "ad_name"
+    ]
+}
+```
+
+| Field | Datatype | Mandatory | Desc
+| ------ | ------ | ------ | --------
+| type |String |Yes |outliers
+| metric |String |Yes |valid column name
+| calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| influencing_columns |List |Yes |Influencing Columns - list of valid column names. Min lenght: 1, Max length: 6
+| results_type |String |No |Show results - Any value from count, below_average_only, above_average_only, top_and_bottom_outliers, above_and_below_average
+| show_results_column | Boolean| No | Show Results Column
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
+| filters | Object| No | Filter Object
+
+<br >
+
+**ROI CALCULATOR Chart**
+```
+{
+    "type": "roi",
+    "max_metric": "impressions",
+    "max_operation": "average",
+    "min_metric": "spend",
+    "min_operation": "max",
+    "influencing_columns": [
+        "ad_name",
+        "campaign_name"
+    ],
+    "show_results_column": false
+}
+```
+
+| Field | Datatype | Mandatory | Desc
+| ------ | ------ | ------ | --------
+| type |String |Yes |roi
+| max_metric |String |Yes |Metric to Maximize (Return) - valid column name
+| max_operation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| min_metric |String |Yes |Metric to Minimize (Investment) - valid column name
+| min_metric | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| influencing_columns |List |Yes |Influencing Columns - list of valid column names. Min lenght: 1, Max length: 6
+| show_results_column | Boolean| No | Show Results Column
+| show_percentage | Boolean| No | Show ROI as Percentage
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
+| filters | Object| No | Filter Object
+
+<br >
+
+**PIVOT TABLE Chart**
+```
+{
+    "type": "pivot",
+    "metrics": [
+    {
+        "metric": "spend",
+        "operation": "sum"
+    }],
+    "rows": [
+        "account_currency"
+    ],
+    "columns": ["ad_name"]
+}
+```
+
+| Field | Datatype | Mandatory | Desc
+| ------ | ------ | ------ | --------
+| type |String |Yes |pivot
+| metrics |List |Yes |Object, Min lenght: 1, Max length: 10
+| rows |List |Yes |Rows - list of valid column names. Min lenght: 1, Max length: 1
+| columns |List |Yes |Columns - list of valid column names. Min lenght: 1, Max length: 1
+| show_row_totals | Boolean| No | Show Row Totals
+| show_column_totals | Boolean| No | Show Column Totals
+| show_percentage | Boolean| No | Show Percentage, Default: True
+| width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
+| filters | Object| No | Filter Object
+
+<br >
+
+**RICH TEXT**
+```
+{
+    "type": "rich-text-insight",
+    "html": "<p><strong>This is just a header</strong></p><p><i>Add blocks of <u>your choice</u></i></p>"
+}
+```
+
+| Field | Datatype | Mandatory | Desc
+| ------ | ------ | ------ | --------
+| type |String |Yes |rich-text-insight
+| html |String |Yes |HTML text
+| width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
+
+<br >
+
+**AI Chart**
+```
+{
+    "type": "ai"
+}
+```
+
+| Field | Datatype | Mandatory | Desc
+| ------ | ------ | ------ | --------
+| type |String |Yes |ai
+| width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
+
+<br >
+
+
+
+**Filters**
 **Allowed values**: object
 Following filters can be applied
  - Filter date columns with dynamic date range like last 30 days, last year etc
@@ -515,34 +785,6 @@ Possible dynamic date ranges
 Possible operations
  - INCLUDING
  - EXCLUDING
-<br>
-
-
-**Field**: calculation
-**Mandatory**
-
-> if type in **ai** or **rich-text-insight** then **not allowed**
-> for **other types** it is **required**
-
-**Allowed values**
-- count 
-- sum
-- average
-- stddev
-- variance
-- max
-- min 
-
-<br>
-
-**Field**: width 
-**Mandatory**: False
-**Allowed values**
-- one-third 
-- two-thirds
-- full
-
-Default value: full
 <br>
 
 **Field**: html 
