@@ -1,6 +1,8 @@
 
 
 
+
+
 # **Welcome to the Polymer Search API**
 
 The Polymer Search API  is the fastest way to convert any dataset into a fully interactive web application, allowing anyone to access AI-recommended insights, make lightning quick visualizations or reports, and more.
@@ -421,7 +423,23 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
 
 **Chart Object**
+<br >
+**AI Chart**
+```
+{
+    "type": "ai"
+}
+```
+
+| Field | Datatype | Mandatory | Desc
+| ------ | ------ | ------ | --------
+| type |String |Yes |ai
+| width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
+
+<br >
+
 **Bar Chart**
+
 ```
 {
     "type": "bar",
@@ -441,15 +459,15 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | Field | Datatype | Mandatory | Desc
 | ------ | ------ | ------ | --------
 | type |String |Yes |bar
-| x_axis |List |No |list of valid column name
+| x_axis |List |No |list of valid column name. Min length: 1, Max length: 3
 | y_axis | String| Yes| valid column name
 | calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
 | slice | String| No| valid column name
 | show_annotations | Boolean| No | Annotate each segment by its value
-| show_stacked | Boolean| No | Show as stack
+| show_stacked | Boolean| No | Show as stack. Default: true
 | is_percentage | Boolean| No | Show as percentage
 | y_axis_log | Boolean| No | Use logarithmic scale for Y-Axis
-| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
 
@@ -475,27 +493,26 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | ------ | ------ | ------ | --------
 | type |String |Yes |column
 | x_axis | String| Yes| valid column name
-| y_axis |List |No |list of valid column name
+| y_axis |List |No |list of valid column name. Min length: 1, Max length: 3
 | calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
 | slice | String| No| valid column name
 | show_annotations | Boolean| No | Annotate each segment by its value
-| show_stacked | Boolean| No | Show as stack
+| show_stacked | Boolean| No | Show as stack. Default: true
 | is_percentage | Boolean| No | Show as percentage
 | x_axis_log | Boolean| No | Use logarithmic scale for X-Axis
-| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
 
 <br >
 
-**Column Chart**
+**SCATTER PLOT Chart**
 ```
 {
     "type": "scatter",
     "x_axis": "spend",
     "y_axis": "cost_per_initiate_checkout",
     "calculation": "sum",
-    "y_axis_log": true,
     "x_axis_log": true
 }
 ```
@@ -510,7 +527,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | slice | String| No| valid column name
 | x_axis_log | Boolean| No | Use logarithmic scale for X-Axis
 | y_axis_log | Boolean| No | Use logarithmic scale for Y-Axis
-| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
 
@@ -539,7 +556,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | slice | String| No| valid column name
 | is_area | Boolean| No | Use area chart
 | y_axis_log | Boolean| No | Use logarithmic scale for Y-Axis
-| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
 | group_by | String| No | Any value from day, week, month, quarter, year
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
@@ -565,7 +582,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
 | slice | String| No| valid column name
 | show_annotations | Boolean| No | Annotate each segment by its value
-| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
 
@@ -589,7 +606,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
 | slice | String| No| valid column name
 | y_axis_log | Boolean| No | Use logarithmic scale for Y-Axis
-| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
 
@@ -610,9 +627,9 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | Field | Datatype | Mandatory | Desc
 | ------ | ------ | ------ | --------
 | type |String |Yes |pie
-| columns |List |Yes |list of valid column name
+| columns |List |Yes |list of valid column name. Min length: 1, Max length: 2
 | show_annotations | Boolean| No | Annotate each segment by its value
-| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
 
@@ -636,7 +653,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | type |String |Yes |outliers
 | metric |String |Yes |valid column name
 | calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
-| influencing_columns |List |Yes |Influencing Columns - list of valid column names. Min lenght: 1, Max length: 6
+| influencing_columns |List |Yes |Influencing Columns - list of valid column names. Min length: 1, Max length: 6
 | results_type |String |No |Show results - Any value from count, below_average_only, above_average_only, top_and_bottom_outliers, above_and_below_average
 | show_results_column | Boolean| No | Show Results Column
 | exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
@@ -668,7 +685,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | max_operation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
 | min_metric |String |Yes |Metric to Minimize (Investment) - valid column name
 | min_metric | String| Yes| Any value from count, sum, average, stddev, variance, max, min
-| influencing_columns |List |Yes |Influencing Columns - list of valid column names. Min lenght: 1, Max length: 6
+| influencing_columns |List |Yes |Influencing Columns - list of valid column names. Min length: 1, Max length: 6
 | show_results_column | Boolean| No | Show Results Column
 | show_percentage | Boolean| No | Show ROI as Percentage
 | exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
@@ -696,9 +713,9 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | Field | Datatype | Mandatory | Desc
 | ------ | ------ | ------ | --------
 | type |String |Yes |pivot
-| metrics |List |Yes |Object, Min lenght: 1, Max length: 10
-| rows |List |Yes |Rows - list of valid column names. Min lenght: 1, Max length: 1
-| columns |List |Yes |Columns - list of valid column names. Min lenght: 1, Max length: 1
+| metrics |List |Yes |Object, Min length: 1, Max length: 10. <br > **metric**: valid column <br > **operation**: Any value from count, sum, average, stddev, variance, max, min
+| rows |List |Yes |Rows - list of valid column names. Min length: 1, Max length: 1
+| columns |List |Yes |Columns - list of valid column names. Min length: 1, Max length: 1
 | show_row_totals | Boolean| No | Show Row Totals
 | show_column_totals | Boolean| No | Show Column Totals
 | show_percentage | Boolean| No | Show Percentage, Default: True
@@ -719,20 +736,6 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | ------ | ------ | ------ | --------
 | type |String |Yes |rich-text-insight
 | html |String |Yes |HTML text
-| width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
-
-<br >
-
-**AI Chart**
-```
-{
-    "type": "ai"
-}
-```
-
-| Field | Datatype | Mandatory | Desc
-| ------ | ------ | ------ | --------
-| type |String |Yes |ai
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 
 <br >
@@ -787,9 +790,6 @@ Possible operations
  - EXCLUDING
 <br>
 
-**Field**: html 
-> if type is **rich-text-insight** then **required**
-> for **other types** it is **not allowed**
 
 ### Example 1: Create basic view with all non AI charts ([see curl](view_curl_sample_ex1.sh)): 
 ```sh
