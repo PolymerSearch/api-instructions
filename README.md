@@ -444,10 +444,15 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 ```
 {
     "type": "bar",
-    "x_axis": [
-        "spend",
-        "Clicks (all)"
-    ],
+    "x_axis_multiple": [
+    {
+        "name": "spend",
+        "operation": "SUM"
+    },
+    {
+        "name": "Clicks (all)",
+        "operation": "COUNT"
+    }],
     "y_axis": "campaign_status",
     "operation": "SUM",
     "y_axis_log": true,
@@ -460,9 +465,10 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | Field | Datatype | Mandatory | Desc
 | ------ | ------ | ------ | --------
 | type |String |Yes |bar
-| x_axis |List |No |list of valid column name. Min length: 1, Max length: 3
+| x_axis |List | one of the x_axis or x_axis_multiple is required | valid column name
+| x_axis_multiple | List | one of the x_axis or x_axis_multiple is required | Object, Min length: 2, Max length: 10. <br > **name**: valid column <br > **operation**: Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | y_axis | String| Yes| valid column name
-| operation | String| Yes| Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
+| operation | String| No | Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | slice | String| No| valid column name
 | show_annotations | Boolean| No | Annotate each segment by its value
 | show_stacked | Boolean| No | Show as stack. Default: true
@@ -479,10 +485,15 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 {
     "type": "column",
     "x_axis": "campaign_status",
-    "y_axis": [
-        "spend",
-        "Clicks (all)"
-    ],
+    "y_axis_multiple": [
+    {
+        "name": "spend",
+        "operation": "SUM"
+    },
+    {
+        "name": "Clicks (all)",
+        "operation": "COUNT"
+    }],
     "operation": "SUM",
     "show_annotations": true,
     "show_stacked": false
@@ -494,8 +505,9 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | ------ | ------ | ------ | --------
 | type |String |Yes |column
 | x_axis | String| Yes| valid column name
-| y_axis |List |No |list of valid column name. Min length: 1, Max length: 3
-| operation | String| Yes| Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
+| y_axis | String | one of the y_axis or y_axis_multiple is required | valid column name
+| y_axis_multiple | List | one of the y_axis or y_axis_multiple is required | Object, Min length: 2, Max length: 10. <br > **name**: valid column <br > **operation**: Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
+| operation | String| No | Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | slice | String| No| valid column name
 | show_annotations | Boolean| No | Annotate each segment by its value
 | show_stacked | Boolean| No | Show as stack. Default: true
@@ -552,7 +564,8 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | ------ | ------ | ------ | --------
 | type |String |Yes |timeseries
 | x_axis | String| Yes| valid column name
-| y_axis |String |No |valid column name
+| y_axis |String | No |valid column name
+| y_axis_multiple | List | No | Object, Min length: 2, Max length: 10. <br > **name**: valid column <br > **operation**: Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | operation | String| Yes| Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | slice | String| No| valid column name
 | is_area | Boolean| No | Use area chart
@@ -602,7 +615,8 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | Field | Datatype | Mandatory | Desc
 | ------ | ------ | ------ | --------
 | type |String |Yes |lineplot
-| y_axis |String |Yes |valid column name
+| y_axis |String | one of the y_axis or y_axis_multiple is required |valid column name
+| y_axis_multiple | List | one of the y_axis or y_axis_multiple is required | Object, Min length: 2, Max length: 10. <br > **name**: valid column <br > **operation**: Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | x_axis | String| Yes| valid column name
 | operation | String| Yes| Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | slice | String| No| valid column name
