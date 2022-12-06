@@ -17,7 +17,7 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
         {
             "submission_date": [
             {
-                "value": "last_30_days"
+                "value": "last 30 days"
             }],
             "payment_mechanism": [
             {
