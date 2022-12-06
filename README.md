@@ -449,7 +449,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
         "Clicks (all)"
     ],
     "y_axis": "campaign_status",
-    "calculation": "sum",
+    "operation": "SUM",
     "y_axis_log": true,
     "show_annotations": true,
     "show_stacked": false
@@ -462,7 +462,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | type |String |Yes |bar
 | x_axis |List |No |list of valid column name. Min length: 1, Max length: 3
 | y_axis | String| Yes| valid column name
-| calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| operation | String| Yes| Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | slice | String| No| valid column name
 | show_annotations | Boolean| No | Annotate each segment by its value
 | show_stacked | Boolean| No | Show as stack. Default: true
@@ -483,7 +483,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
         "spend",
         "Clicks (all)"
     ],
-    "calculation": "sum",
+    "operation": "SUM",
     "show_annotations": true,
     "show_stacked": false
 }
@@ -495,7 +495,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | type |String |Yes |column
 | x_axis | String| Yes| valid column name
 | y_axis |List |No |list of valid column name. Min length: 1, Max length: 3
-| calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| operation | String| Yes| Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | slice | String| No| valid column name
 | show_annotations | Boolean| No | Annotate each segment by its value
 | show_stacked | Boolean| No | Show as stack. Default: true
@@ -513,7 +513,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
     "type": "scatter",
     "x_axis": "spend",
     "y_axis": "cost_per_initiate_checkout",
-    "calculation": "sum",
+    "operation": "SUM",
     "x_axis_log": true
 }
 ```
@@ -524,7 +524,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | type |String |Yes |scatter
 | x_axis | String| Yes| valid column name
 | y_axis |String |Yes |valid column name
-| calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| operation | String| Yes| Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | slice | String| No| valid column name
 | x_axis_log | Boolean| No | Use logarithmic scale for X-Axis
 | y_axis_log | Boolean| No | Use logarithmic scale for Y-Axis
@@ -539,7 +539,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 {
     "type": "timeseries",
     "x_axis": "date",
-    "calculation": "sum",
+    "operation": "SUM",
     "y_axis_log": true,
     "exclude_empty_string": false,
     "group_by": "quarter",
@@ -553,7 +553,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | type |String |Yes |timeseries
 | x_axis | String| Yes| valid column name
 | y_axis |String |No |valid column name
-| calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| operation | String| Yes| Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | slice | String| No| valid column name
 | is_area | Boolean| No | Use area chart
 | y_axis_log | Boolean| No | Use logarithmic scale for Y-Axis
@@ -569,7 +569,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 {
     "type": "heatmap",
     "y_axis": "account_currency",
-    "calculation": "sum",
+    "operation": "SUM",
     "exclude_empty_string": false,
     "show_annotations": true
 }
@@ -580,7 +580,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | type |String |Yes |heatmap
 | y_axis |String |Yes |valid column name
 | x_axis | String| No| valid column name
-| calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| operation | String| Yes| Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | slice | String| No| valid column name
 | show_annotations | Boolean| No | Annotate each segment by its value
 | exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
@@ -595,7 +595,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
     "type": "lineplot",
     "x_axis": "spend",
     "y_axis": "link_click",
-    "calculation": "sum"
+    "operation": "SUM"
 }
 ```
 
@@ -604,7 +604,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | type |String |Yes |lineplot
 | y_axis |String |Yes |valid column name
 | x_axis | String| Yes| valid column name
-| calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| operation | String| Yes| Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | slice | String| No| valid column name
 | y_axis_log | Boolean| No | Use logarithmic scale for Y-Axis
 | exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
@@ -641,7 +641,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 {
     "type": "outliers",
     "metric": "spend",
-    "calculation": "count",
+    "operation": "COUNT",
     "exclude_empty_string": false,
     "influencing_columns": [
         "ad_name"
@@ -653,7 +653,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | ------ | ------ | ------ | --------
 | type |String |Yes |outliers
 | metric |String |Yes |valid column name
-| calculation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| operation | String| Yes| Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | influencing_columns |List |Yes |Influencing Columns - list of valid column names. Min length: 1, Max length: 6
 | results_type |String |No |Show results - Any value from count, below_average_only, above_average_only, top_and_bottom_outliers, above_and_below_average
 | show_results_column | Boolean| No | Show Results Column
@@ -668,9 +668,9 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 {
     "type": "roi",
     "max_metric": "impressions",
-    "max_operation": "average",
+    "max_operation": "AVERAGE",
     "min_metric": "spend",
-    "min_operation": "max",
+    "min_operation": "MAX",
     "influencing_columns": [
         "ad_name",
         "campaign_name"
@@ -683,9 +683,9 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | ------ | ------ | ------ | --------
 | type |String |Yes |roi
 | max_metric |String |Yes |Metric to Maximize (Return) - valid column name
-| max_operation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| max_operation | String| Yes| Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | min_metric |String |Yes |Metric to Minimize (Investment) - valid column name
-| min_metric | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| min_metric | String| Yes| Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | influencing_columns |List |Yes |Influencing Columns - list of valid column names. Min length: 1, Max length: 6
 | show_results_column | Boolean| No | Show Results Column
 | show_percentage | Boolean| No | Show ROI as Percentage
@@ -702,7 +702,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
     "metrics": [
     {
         "metric": "spend",
-        "operation": "sum"
+        "operation": "SUM"
     }],
     "rows": [
         "account_currency"
@@ -714,7 +714,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | Field | Datatype | Mandatory | Desc
 | ------ | ------ | ------ | --------
 | type |String |Yes |pivot
-| metrics |List |Yes |Object, Min length: 1, Max length: 10. <br > **metric**: valid column <br > **operation**: Any value from count, sum, average, stddev, variance, max, min
+| metrics |List |Yes |Object, Min length: 1, Max length: 10. <br > **metric**: valid column <br > **operation**: Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | rows |List |Yes |Rows - list of valid column names. Min length: 1, Max length: 1
 | columns |List |Yes |Columns - list of valid column names. Min length: 1, Max length: 1
 | show_row_totals | Boolean| No | Show Row Totals
@@ -730,7 +730,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 {
     "type": "kpi",
     "metric": "impressions",
-    "operation": "sum",
+    "operation": "SUM",
     "date": "date",
     "date_range": "last 90 days",
     "goal": 4000000
@@ -742,7 +742,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | ------ | ------ | ------ | --------
 | type |String |Yes |kpi
 | metric |List |Yes |valid column name
-| operation | String| Yes| Any value from count, sum, average, stddev, variance, max, min
+| operation | String| Yes| Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | date | String| No| valid date column name
 | date_range | String| No| Any value from 'last day', 'last 7 days', 'last 30 days', 'last 90 days', 'last 6 months', 'last 12 months, custom
 | date_range_custom | List| No| If date_range is selected as custom. [START_DATE_EPOCH_SECONDS, END_DATE_EPOCH_SECONDS]
@@ -835,14 +835,14 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
             "type": "pie",
             "x_axis": "payment_mechanism",
             "slice": "Submission Date",
-            "calculation": "sum"
+            "operation": "SUM"
         },
         {
             "type": "bar",
             "x_axis": "Fee Month",
             "y_axis": "amount",
             "slice": "Submission Date",
-            "calculation": "average"
+            "operation": "AVERAGE"
         }
     ]
 }'
@@ -880,7 +880,7 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
             "type": "heatmap",
             "x_axis": "Fee Month",
             "y_axis": "amount",
-            "calculation": "max"
+            "operation": "MAX"
         },
         {
             "type": "ai"
@@ -911,7 +911,7 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
         "type": "column",
         "x_axis": "payment_mechanism",
         "y_axis": "amount",
-        "calculation": "count",
+        "operation": "COUNT",
         "filters":
         {
             "submission_date": [
@@ -978,14 +978,14 @@ curl --location --request PUT 'https://api.polymersearch.com/v1/datasets/views/d
             "x_axis": "payment_mechanism",
             "y_axis": "Submission Date",
             "slice": "amount",
-            "calculation": "sum"
+            "operation": "SUM"
         },
         {
             "type": "bar",
             "x_axis": "Fee Month",
             "y_axis": "amount",
             "slice": "Submission Date",
-            "calculation": "min"
+            "operation": "MIN"
         }
     ]
 }'
@@ -1004,14 +1004,14 @@ curl --location --request PUT 'https://api.polymersearch.com/v1/datasets/views/d
             "x_axis": "payment_mechanism",
             "y_axis": "Submission Date",
             "slice": "amount",
-            "calculation": "sum"
+            "operation": "SUM"
         },
         {
             "type": "bar",
             "x_axis": "Fee Month",
             "y_axis": "amount",
             "slice": "Submission Date",
-            "calculation": "min"
+            "operation": "MIN"
         }
     ]
 }'

@@ -8,14 +8,14 @@ curl --location --request PUT 'https://api.polymersearch.com/v1/datasets/views/d
             "x_axis": "payment_mechanism",
             "y_axis": "Submission Date",
             "slice": "amount",
-            "calculation": "sum"
+            "operation": "SUM"
         },
         {
             "type": "bar",
             "x_axis": "Fee Month",
             "y_axis": "amount",
             "slice": "Submission Date",
-            "calculation": "min"
+            "operation": "MIN"
         }
     ]
 }'

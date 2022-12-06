@@ -8,14 +8,14 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
             "type": "pie",
             "x_axis": "payment_mechanism",
             "slice": "Submission Date",
-            "calculation": "sum"
+            "operation": "SUM"
         },
         {
             "type": "bar",
             "x_axis": "Fee Month",
             "y_axis": "amount",
             "slice": "Submission Date",
-            "calculation": "average"
+            "operation": "AVERAGE"
         }
     ]
 }'

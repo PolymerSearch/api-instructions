@@ -12,7 +12,7 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
         "type": "column",
         "x_axis": "payment_mechanism",
         "y_axis": "amount",
-        "calculation": "count",
+        "operation": "COUNT",
         "filters":
         {
             "submission_date": [

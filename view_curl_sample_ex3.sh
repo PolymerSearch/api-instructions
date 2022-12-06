@@ -8,7 +8,7 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
             "type": "heatmap",
             "x_axis": "Fee Month",
             "y_axis": "amount",
-            "calculation": "max"
+            "operation": "MAX"
         },
         {
             "type": "ai"
