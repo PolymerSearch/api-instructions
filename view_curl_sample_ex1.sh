@@ -6,9 +6,12 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
     "charts": [
         {
             "type": "pie",
-            "x_axis": "payment_mechanism",
-            "slice": "Submission Date",
-            "operation": "SUM"
+            "x_axis_multiple": [
+                {
+                    "name": "payment_mechanism"
+                }
+            ]
+            "slice": "Submission Date"
         },
         {
             "type": "bar",

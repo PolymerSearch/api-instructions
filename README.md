@@ -4,6 +4,7 @@
 
 
 
+
 # **Welcome to the Polymer Search API**
 
 The Polymer Search API  is the fastest way to convert any dataset into a fully interactive web application, allowing anyone to access AI-recommended insights, make lightning quick visualizations or reports, and more.
@@ -631,9 +632,10 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 ```
 {
     "type": "pie",
-    "columns": [
-        "date"
-    ],
+    "x_axis_multiple": [
+    {
+        "name": "status"
+    }],
     "exclude_empty_string": false,
     "show_annotations": true
 }
@@ -642,7 +644,8 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | Field | Datatype | Mandatory | Desc
 | ------ | ------ | ------ | --------
 | type |String |Yes |pie
-| columns |List |Yes |list of valid column name. Min length: 1, Max length: 2
+| x_axis_multiple |List |Yes |Object, Min length: 1, Max length: 2. <br > **name**: valid column
+| y_axis_multiple |List |No |Object, Min length: 1, Max length: 1. <br > **name**: valid column <br > **operation**: Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | show_annotations | Boolean| No | Annotate each segment by its value
 | exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
@@ -845,20 +848,21 @@ curl --location --request POST 'https://api.polymersearch.com/v1/datasets/6278c1
 --data-raw '{
     "name": "My View Name",
     "charts": [
+    {
+        "type": "pie",
+        "x_axis_multiple": [
         {
-            "type": "pie",
-            "x_axis": "payment_mechanism",
-            "slice": "Submission Date",
-            "operation": "SUM"
-        },
-        {
-            "type": "bar",
-            "x_axis": "Fee Month",
-            "y_axis": "amount",
-            "slice": "Submission Date",
-            "operation": "AVERAGE"
-        }
-    ]
+            "name": "payment_mechanism"
+        }]
+        "slice": "Submission Date"
+    },
+    {
+        "type": "bar",
+        "x_axis": "Fee Month",
+        "y_axis": "amount",
+        "slice": "Submission Date",
+        "operation": "AVERAGE"
+    }]
 }'
 ```
 ### Example 2: Create basic view with all AI charts ([see curl](view_curl_sample_ex2.sh)): 
