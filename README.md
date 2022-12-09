@@ -5,6 +5,7 @@
 
 
 
+
 # **Welcome to the Polymer Search API**
 
 The Polymer Search API  is the fastest way to convert any dataset into a fully interactive web application, allowing anyone to access AI-recommended insights, make lightning quick visualizations or reports, and more.
@@ -421,6 +422,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 |----------------|-------------------------------|-----------------------------|
 |name|true           |Type: String<br />Name of the view            |
 |charts          |true           |Type: List [Chart Object] <br /> |
+| filters | No| Filter Object |
 |sharing          |false|Desired sharing status for the dataset (public, private, password-protected). Default: private|
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
 
@@ -761,7 +763,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | metric |List |Yes |valid column name
 | operation | String| Yes| Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
 | date | String| No| valid date column name
-| date_range | String| No| Any value from 'last day', 'last 7 days', 'last 30 days', 'last 90 days', 'last 6 months', 'last 12 months, custom
+| date_range | String| No| Any value from 'last day', 'last 7 days', 'last 14 days', 'last 30 days', 'last 90 days', 'last 6 months', 'last 12 months, 'this month', 'this week', 'last week', custom
 | date_range_custom | List| No| If date_range is selected as custom. [START_DATE_EPOCH_SECONDS, END_DATE_EPOCH_SECONDS]
 | comp_date_range | String| No| Any value from 'previous period', 'custom'
 | comp_date_range_custom | List| No| If comp_date_range is selected as custom. [START_DATE_EPOCH_SECONDS, END_DATE_EPOCH_SECONDS]
@@ -829,10 +831,14 @@ Following filter will be read as
 Possible dynamic date ranges
  - last day
  - last 7 days
+ - last 14 days
  - last 30 days
  - last 90 days
  - last 6 months
  - last 12 months
+ - last week
+ - this week
+ - this month
 
 Possible operations
  - INCLUDING
