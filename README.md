@@ -775,6 +775,41 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 
 <br >
 
+**DATA TABLE**
+```
+{
+    "type": "data-table",
+    "columns": [
+        "ticket_group"
+    ],
+    "values": [
+    {
+        "column": "time_spent_in_minutes",
+        "operation": "SUM"
+    }],
+    "sort":
+    {
+        "column": "time_spent_in_minutes",
+        "order": "DESC"
+    }
+}
+```
+
+
+| Field | Datatype | Mandatory | Desc
+| ------ | ------ | ------ | --------
+| type |String |Yes |data-table
+| columns |List |Yes |valid column name
+| values |List |Yes |Object, Min length: 1, Max length: 10. <br > **column**: valid column <br > **operation**: Any value from COUNT, SUM, AVERAGE, STDDEV, VARIANCE, MAX, MIN
+| sort |Object |Yes |Object <br > **column**: valid column <br > **order**: Any value from ASC, DESC
+| exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
+| show_column_totals | Boolean| No | Show Column Totals
+| width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
+| filters | Object| No | Filter Object
+
+
+<br >
+
 **RICH TEXT**
 ```
 {
