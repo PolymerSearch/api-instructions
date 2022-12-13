@@ -1,11 +1,4 @@
 
-
-
-
-
-
-
-
 # **Welcome to the Polymer Search API**
 
 The Polymer Search API  is the fastest way to convert any dataset into a fully interactive web application, allowing anyone to access AI-recommended insights, make lightning quick visualizations or reports, and more.
@@ -202,6 +195,8 @@ Body Params
 |file          |false           |Type: file. The file to upload.|
 |sharing          |false|Desired sharing status for the dataset (public, private, password-protected).|
 |password          |false|Required only in case of sharing: password-protected, Validation: min 6 characters.|
+|incremental_update          |false|In case you are passing incremental updates only|
+|primary_key          |Yes if incremental_update = true|name of the column|
 
 Note: One of 'url' or 'file' parameter is required.
 
@@ -480,6 +475,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
+| title | String| No | Custom heading
 
 <br >
 
@@ -519,6 +515,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
+| title | String| No | Custom heading
 
 <br >
 
@@ -546,6 +543,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
+| title | String| No | Custom heading
 
 <br >
 
@@ -577,6 +575,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | group_by | String| No | Any value from day, week, month, quarter, year
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
+| title | String| No | Custom heading
 
 <br >
 
@@ -602,6 +601,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
+| title | String| No | Custom heading
 
 <br >
 
@@ -627,6 +627,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
+| title | String| No | Custom heading
 
 <br >
 
@@ -652,6 +653,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | exclude_empty_string | Boolean| No | Exclude [EMPTY] strings. Default: true
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
+| title | String| No | Custom heading
 
 <br >
 
@@ -679,6 +681,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
+| title | String| No | Custom heading
 
 <br >
 
@@ -711,6 +714,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | exclude_empty_string | Boolean| No | Exclude [EMPTY] strings
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
+| title | String| No | Custom heading
 
 <br >
 
@@ -741,6 +745,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | show_percentage | Boolean| No | Show Percentage, Default: True
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
+| title | String| No | Custom heading
 
 <br >
 
@@ -806,6 +811,7 @@ POST https://api.polymersearch.com/v1/datasets/:dataset_id/views
 | show_column_totals | Boolean| No | Show Column Totals
 | width | Boolean| No | Any value from one-third , two-thirds, full. Default: full
 | filters | Object| No | Filter Object
+| title | String| No | Custom heading
 
 
 <br >
